@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-en="miGears — module map" data-title-zh="miGears — 模块地图">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="All 30 miGears modules by layer, with when to use and when to avoid each one.">
+    <title>miGears — module map</title>
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="wrap header-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">mi</span>Gears</a>
+        <nav class="site-nav" aria-label="Main">
+                            <a href="index.html"><span class="lang-en">Overview</span><span class="lang-zh">概览</span></a>
+                            <a href="modules.html" class="active" aria-current="page"><span class="lang-en">Modules</span><span class="lang-zh">模块</span></a>
+                            <a href="choose.html"><span class="lang-en">Choose</span><span class="lang-zh">选型</span></a>
+                            <a href="stacks.html"><span class="lang-en">Stacks</span><span class="lang-zh">组合</span></a>
+                    </nav>
+        <button class="lang-toggle" type="button" aria-label="Switch language">中文</button>
+    </div>
+</header>
+
+<main>
+    <section class="page-head">
+    <div class="wrap">
+        <p class="eyebrow"><span class="lang-en">Reference</span><span class="lang-zh">速查</span></p>
+        <h1><span class="lang-en">The module map</span><span class="lang-zh">模块地图</span></h1>
+        <p class="lede">
+            <span class="lang-en">Every package, one layer at a time. Read “use when” before installing; read “avoid when” before keeping it.</span>
+            <span class="lang-zh">每个包按层次排列。安装前读“适用”，保留前读“不适用”。</span>
+        </p>
+    </div>
+</section>
+
+<section class="section section-tight">
+    <div class="wrap">
+        <div class="filter-bar">
+            <div class="filter-buttons" role="group" aria-label="Filter by layer">
+                <button class="filter active" type="button" data-layer="all">
+                    <span class="lang-en">All</span><span class="lang-zh">全部</span>
+                </button>
+                                    <button class="filter" type="button" data-layer="http"><span class="lang-en">HTTP</span><span class="lang-zh">HTTP</span></button>
+                                    <button class="filter" type="button" data-layer="view"><span class="lang-en">View</span><span class="lang-zh">视图</span></button>
+                                    <button class="filter" type="button" data-layer="business"><span class="lang-en">Business</span><span class="lang-zh">业务</span></button>
+                                    <button class="filter" type="button" data-layer="data"><span class="lang-en">Data</span><span class="lang-zh">数据</span></button>
+                                    <button class="filter" type="button" data-layer="foundation"><span class="lang-en">Foundation</span><span class="lang-zh">基础</span></button>
+                                    <button class="filter" type="button" data-layer="integration"><span class="lang-en">Integration</span><span class="lang-zh">集成</span></button>
+                            </div>
+            <label class="search">
+                <span class="visually-hidden"><span class="lang-en">Filter modules</span><span class="lang-zh">过滤模块</span></span>
+                <input id="module-search" type="search" placeholder="Filter modules… / 过滤模块…" autocomplete="off">
+            </label>
+        </div>
+        <p class="filter-status" id="filter-status" aria-live="polite"></p>
+    </div>
+</section>
+
+    <section class="section section-tight layer-section" data-layer-section="http">
+        <div class="wrap">
+            <div class="layer-head">
+                <h2><span class="lang-en">HTTP</span><span class="lang-zh">HTTP</span></h2>
+                <p><span class="lang-en">Routing, request handling, and access control at the edge.</span><span class="lang-zh">路由、请求处理与边缘访问控制。</span></p>
+            </div>
+            <div class="module-list">
+                                                        <article class="module-card" id="web"
+                             data-layer="http"
+                             data-search="migears/web file-as-routing rest framework; mirest is also the psr-11 container. 以文件为路由的轻量 rest 框架；mirest 同时是 psr-11 容器。 http http">
+                        <div class="module-head">
+                            <h3><code>migears/web</code></h3>
+                            <span class="badge badge-ok">Packagist 2.1.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">File-as-routing REST framework; MiRest is also the PSR-11 container.</span><span class="lang-zh">以文件为路由的轻量 REST 框架；MiRest 同时是 PSR-11 容器。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need HTTP routing or a JSON API.</li><li>You want routes to be files and services wired in one place.</li></ul><ul class="bi-list lang-zh"><li>需要 HTTP 路由或 JSON API。</li><li>希望路由就是文件，服务在一个地方接线。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>CLI-only tools or long-running workers.</li><li>You need a full MVC stack with an ORM and a middleware ecosystem.</li></ul><ul class="bi-list lang-zh"><li>纯 CLI 工具或常驻 worker。</li><li>需要带 ORM 和中间件生态的完整 MVC 栈。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-web#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="web-guards"
+                             data-layer="http"
+                             data-search="migears/web-guards before() guards for migears/web: auth, csrf, throttling, cors, ip/ua filters, maintenance mode. 面向 migears/web 的 before() 守卫：认证、csrf、限流、cors、ip/ua 过滤、维护模式。 http http">
+                        <div class="module-head">
+                            <h3><code>migears/web-guards</code></h3>
+                            <span class="badge badge-neutral"><span class="lang-en">pending release</span><span class="lang-zh">待发布</span></span>                        </div>
+                        <p class="module-summary"><span class="lang-en">before() guards for migears/web: auth, CSRF, throttling, CORS, IP/UA filters, maintenance mode.</span><span class="lang-zh">面向 migears/web 的 before() 守卫：认证、CSRF、限流、CORS、IP/UA 过滤、维护模式。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need cross-cutting request policy in front of every endpoint.</li></ul><ul class="bi-list lang-zh"><li>需要在所有端点之前执行统一的请求策略。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Your gateway or proxy already enforces these policies.</li><li>You need per-endpoint business rules; use a resource&#039;s before() instead.</li></ul><ul class="bi-list lang-zh"><li>网关或代理已经执行了这些策略。</li><li>需要按端点的业务规则，应使用资源自身的 before()。</li></ul>                            </div>
+                        </div>
+                                                    <p class="requires">
+                                <span class="lang-en">Pulls in:</span><span class="lang-zh">会带入：</span>
+                                <a href="#web">migears/web</a>, <a href="#data-structure">migears/data-structure</a>                            </p>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-web-guard#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="acl-feature"
+                             data-layer="http"
+                             data-search="migears/acl-feature endpoint access control from a php config keyed by url path and http method, deny by default. 用 php 配置按 url 路径与 http 方法做端点访问控制，默认拒绝。 http http">
+                        <div class="module-head">
+                            <h3><code>migears/acl-feature</code></h3>
+                            <span class="badge badge-neutral"><span class="lang-en">pending release</span><span class="lang-zh">待发布</span></span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Endpoint access control from a PHP config keyed by URL path and HTTP method, deny by default.</span><span class="lang-zh">用 PHP 配置按 URL 路径与 HTTP 方法做端点访问控制，默认拒绝。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need a small, static access matrix for a small application.</li></ul><ul class="bi-list lang-zh"><li>小型应用需要一张静态的访问矩阵。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Per-record authorization, dynamic RBAC, or ABAC.</li></ul><ul class="bi-list lang-zh"><li>按记录的授权、动态 RBAC 或 ABAC。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-acl-feature#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="security-token-auth"
+                             data-layer="http"
+                             data-search="migears/security-token-auth bearer token authentication for native apps, with rotating refresh tokens. 面向原生应用的 bearer token 认证，支持刷新令牌轮换。 http http">
+                        <div class="module-head">
+                            <h3><code>migears/security-token-auth</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Bearer token authentication for native apps, with rotating refresh tokens.</span><span class="lang-zh">面向原生应用的 Bearer token 认证，支持刷新令牌轮换。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Mobile or desktop clients need long-lived login with refresh rotation.</li></ul><ul class="bi-list lang-zh"><li>移动端或桌面客户端需要长期登录与刷新轮换。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Browser session login; use migears/security instead.</li><li>Simple static API keys with no refresh lifecycle.</li></ul><ul class="bi-list lang-zh"><li>浏览器会话登录；应改用 migears/security。</li><li>只需静态 API key，没有刷新生命周期。</li></ul>                            </div>
+                        </div>
+                                                    <p class="requires">
+                                <span class="lang-en">Pulls in:</span><span class="lang-zh">会带入：</span>
+                                <a href="#security">migears/security</a>                            </p>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-security-token-auth#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                            </div>
+        </div>
+    </section>
+    <section class="section section-tight layer-section" data-layer-section="view">
+        <div class="wrap">
+            <div class="layer-head">
+                <h2><span class="lang-en">View</span><span class="lang-zh">视图</span></h2>
+                <p><span class="lang-en">Turning data into HTML, from native templates to declarative pages.</span><span class="lang-zh">把数据变成 HTML，从原生模板到声明式页面。</span></p>
+            </div>
+            <div class="module-list">
+                                                        <article class="module-card" id="template"
+                             data-layer="view"
+                             data-search="migears/template native php template engine with auto-escaping and layout inheritance. 原生 php 模板引擎，自带自动转义与布局继承。 view 视图">
+                        <div class="module-head">
+                            <h3><code>migears/template</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Native PHP template engine with auto-escaping and layout inheritance.</span><span class="lang-zh">原生 PHP 模板引擎，自带自动转义与布局继承。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Any server-rendered HTML.</li><li>You know PHP and want no new template language.</li></ul><ul class="bi-list lang-zh"><li>任何服务端渲染的 HTML。</li><li>你会 PHP，不想再学一门模板语言。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need declarative page definitions; use yaml-pages or xml-pages.</li><li>API-only projects with no HTML output.</li></ul><ul class="bi-list lang-zh"><li>需要声明式页面定义；应改用 yaml-pages 或 xml-pages。</li><li>只输出 API、没有 HTML 的项目。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-template#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="pages"
+                             data-layer="view"
+                             data-search="migears/pages core declarative page dsl compiled to template files; the shared compiler behind yaml-pages and xml-pages. 声明式页面 dsl 的核心编译器，编译为模板文件；yaml-pages 与 xml-pages 的共享底座。 view 视图">
+                        <div class="module-head">
+                            <h3><code>migears/pages</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Core declarative page DSL compiled to template files; the shared compiler behind yaml-pages and xml-pages.</span><span class="lang-zh">声明式页面 DSL 的核心编译器，编译为模板文件；yaml-pages 与 xml-pages 的共享底座。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You prefer the array DSL and want to define pages in PHP.</li><li>You are building a parser or front-end package on top of the array DSL.</li></ul><ul class="bi-list lang-zh"><li>你偏好数组 DSL，想用 PHP 定义页面。</li><li>你要在数组 DSL 之上实现自己的解析器或前端包。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You want a ready-made file format; yaml-pages and xml-pages provide one.</li></ul><ul class="bi-list lang-zh"><li>你希望使用现成的文件格式；yaml-pages 与 xml-pages 提供了这种格式。</li></ul>                            </div>
+                        </div>
+                                                    <p class="requires">
+                                <span class="lang-en">Pulls in:</span><span class="lang-zh">会带入：</span>
+                                <a href="#template">migears/template</a>                            </p>
+                                                                            <p class="module-note"><span class="lang-en">All three page front-ends are valid. pages is the array DSL; yaml-pages and xml-pages are file formats. Pick by preference.</span><span class="lang-zh">三种页面前端都可用。pages 是数组 DSL；yaml-pages 与 xml-pages 是文件格式。按喜好选择。</span></p>
+                                                <a class="readme-link" href="https://github.com/samxxu/migears-pages#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="yaml-pages"
+                             data-layer="view"
+                             data-search="migears/yaml-pages yaml page definitions compiled to migears template files. 用 yaml 定义页面，编译为 migears 模板文件。 view 视图">
+                        <div class="module-head">
+                            <h3><code>migears/yaml-pages</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">YAML page definitions compiled to miGears template files.</span><span class="lang-zh">用 YAML 定义页面，编译为 miGears 模板文件。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You prefer YAML for declarative pages.</li><li>Many pages share the same list, form, or detail structure.</li></ul><ul class="bi-list lang-zh"><li>你偏好用 YAML 定义声明式页面。</li><li>许多页面共享相同的列表、表单或详情结构。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You prefer XML; use xml-pages.</li><li>You prefer plain PHP templates, even for a larger site; use template.</li></ul><ul class="bi-list lang-zh"><li>你偏好 XML；应改用 xml-pages。</li><li>即使页面较多，你仍偏好纯 PHP 模板；应使用 template。</li></ul>                            </div>
+                        </div>
+                                                    <p class="requires">
+                                <span class="lang-en">Pulls in:</span><span class="lang-zh">会带入：</span>
+                                <a href="#pages">migears/pages</a>                            </p>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-yaml-pages#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="xml-pages"
+                             data-layer="view"
+                             data-search="migears/xml-pages xml page definitions compiled to migears template files. 用 xml 定义页面，编译为 migears 模板文件。 view 视图">
+                        <div class="module-head">
+                            <h3><code>migears/xml-pages</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">XML page definitions compiled to miGears template files.</span><span class="lang-zh">用 XML 定义页面，编译为 miGears 模板文件。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You prefer XML for declarative pages.</li><li>You already have XML tooling or an XML team convention.</li></ul><ul class="bi-list lang-zh"><li>你偏好用 XML 定义声明式页面。</li><li>已有 XML 工具链或团队的 XML 约定。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You prefer YAML; use yaml-pages.</li><li>You prefer plain PHP templates; use template.</li></ul><ul class="bi-list lang-zh"><li>你偏好 YAML；应改用 yaml-pages。</li><li>你偏好纯 PHP 模板；应使用 template。</li></ul>                            </div>
+                        </div>
+                                                    <p class="requires">
+                                <span class="lang-en">Pulls in:</span><span class="lang-zh">会带入：</span>
+                                <a href="#pages">migears/pages</a>                            </p>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-xml-pages#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="html-digest"
+                             data-layer="view"
+                             data-search="migears/html-digest extracts plain-text summaries, snippets, and word counts from html. 从 html 中提取纯文本摘要、片段与词数。 view 视图">
+                        <div class="module-head">
+                            <h3><code>migears/html-digest</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Extracts plain-text summaries, snippets, and word counts from HTML.</span><span class="lang-zh">从 HTML 中提取纯文本摘要、片段与词数。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Search snippets, previews, reading time, or word-count limits.</li></ul><ul class="bi-list lang-zh"><li>搜索摘要、预览、阅读时长或字数限制。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Sanitizing untrusted HTML for output; use the Sanitizer in migears/security.</li></ul><ul class="bi-list lang-zh"><li>为输出净化不可信 HTML；应使用 migears/security 中的 Sanitizer。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-html-digest#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                            </div>
+        </div>
+    </section>
+    <section class="section section-tight layer-section" data-layer-section="business">
+        <div class="wrap">
+            <div class="layer-head">
+                <h2><span class="lang-en">Business</span><span class="lang-zh">业务</span></h2>
+                <p><span class="lang-en">Domain objects, validation, orchestration, and security primitives.</span><span class="lang-zh">领域对象、校验、编排与安全原语。</span></p>
+            </div>
+            <div class="module-list">
+                                                        <article class="module-card" id="domain"
+                             data-layer="business"
+                             data-search="migears/domain pure data containers with self-validation and no mapping layer. 纯数据容器，自带校验，没有映射层。 business 业务">
+                        <div class="module-head">
+                            <h3><code>migears/domain</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Pure data containers with self-validation and no mapping layer.</span><span class="lang-zh">纯数据容器，自带校验，没有映射层。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You want typed domain objects that validate themselves.</li></ul><ul class="bi-list lang-zh"><li>需要能自我校验的类型化领域对象。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need an ORM, identity map, or lazy relation graph.</li><li>Plain arrays already express the data well.</li></ul><ul class="bi-list lang-zh"><li>需要 ORM、身份映射或懒加载关系图。</li><li>普通数组已经能清楚表达数据。</li></ul>                            </div>
+                        </div>
+                                                    <p class="requires">
+                                <span class="lang-en">Pulls in:</span><span class="lang-zh">会带入：</span>
+                                <a href="#validator">migears/validator</a>                            </p>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-domain#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="manager"
+                             data-layer="business"
+                             data-search="migears/manager business orchestration across domains, daos, and events. 跨领域对象、dao 与事件的业务编排层。 business 业务">
+                        <div class="module-head">
+                            <h3><code>migears/manager</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Business orchestration across domains, DAOs, and events.</span><span class="lang-zh">跨领域对象、DAO 与事件的业务编排层。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Multi-step use cases, transactions, or event dispatch.</li></ul><ul class="bi-list lang-zh"><li>多步骤用例、事务或事件分发。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Thin CRUD that a resource plus a DAO already covers.</li></ul><ul class="bi-list lang-zh"><li>资源加 DAO 已经能覆盖的薄 CRUD。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-manager#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="validator"
+                             data-layer="business"
+                             data-search="migears/validator declarative validation with stable error codes and i18n-ready messages. 声明式校验，稳定错误码，消息可直接国际化。 business 业务">
+                        <div class="module-head">
+                            <h3><code>migears/validator</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Declarative validation with stable error codes and i18n-ready messages.</span><span class="lang-zh">声明式校验，稳定错误码，消息可直接国际化。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Request or domain validation with stable error codes.</li></ul><ul class="bi-list lang-zh"><li>需要稳定错误码的请求或领域校验。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need a full form builder.</li><li>One or two ad-hoc checks are simpler inline.</li></ul><ul class="bi-list lang-zh"><li>需要完整的表单构建器。</li><li>只有一两个临时检查，直接写在原处更简单。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-validator#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="security"
+                             data-layer="business"
+                             data-search="migears/security security toolkit with miauth sessions, csrf, password hashing, remember-me, sanitizer, and tokens. 安全工具箱：miauth 会话、csrf、密码哈希、记住我、净化器与令牌。 business 业务">
+                        <div class="module-head">
+                            <h3><code>migears/security</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Security toolkit with MiAuth sessions, CSRF, password hashing, remember-me, sanitizer, and tokens.</span><span class="lang-zh">安全工具箱：MiAuth 会话、CSRF、密码哈希、记住我、净化器与令牌。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Browser login and session-based applications.</li><li>You need CSRF protection or HTML sanitizing.</li></ul><ul class="bi-list lang-zh"><li>浏览器登录与会话型应用。</li><li>需要 CSRF 防护或 HTML 净化。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Token-only native backends; use security-token-auth.</li><li>No authentication at all.</li></ul><ul class="bi-list lang-zh"><li>只服务原生应用的令牌后端；应改用 security-token-auth。</li><li>完全不需要认证。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-security#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                            </div>
+        </div>
+    </section>
+    <section class="section section-tight layer-section" data-layer-section="data">
+        <div class="wrap">
+            <div class="layer-head">
+                <h2><span class="lang-en">Data</span><span class="lang-zh">数据</span></h2>
+                <p><span class="lang-en">SQL, persistence, caching, Redis structures, and one-off migrations.</span><span class="lang-zh">SQL、持久化、缓存、Redis 结构与一次性迁移。</span></p>
+            </div>
+            <div class="module-list">
+                                                        <article class="module-card" id="sql"
+                             data-layer="data"
+                             data-search="migears/sql lightweight sql query builder with bound parameters. 轻量 sql 查询构建器，使用绑定参数。 data 数据">
+                        <div class="module-head">
+                            <h3><code>migears/sql</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Lightweight SQL query builder with bound parameters.</span><span class="lang-zh">轻量 SQL 查询构建器，使用绑定参数。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You want composable SQL without an ORM.</li><li>Complex joins and reporting queries.</li></ul><ul class="bi-list lang-zh"><li>想要可组合的 SQL，但不需要 ORM。</li><li>复杂连接与报表查询。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need an ORM, migrations, or multi-dialect abstraction.</li></ul><ul class="bi-list lang-zh"><li>需要 ORM、迁移工具或跨方言抽象。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-sql#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="dao"
+                             data-layer="data"
+                             data-search="migears/dao single-table dao trait linking sql and domain objects, with cache invalidation. 单表 dao trait，连接 sql 与领域对象，并带缓存失效。 data 数据">
+                        <div class="module-head">
+                            <h3><code>migears/dao</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Single-table DAO trait linking SQL and domain objects, with cache invalidation.</span><span class="lang-zh">单表 DAO trait，连接 SQL 与领域对象，并带缓存失效。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>One table maps to one domain object and you need CRUD plus pagination.</li></ul><ul class="bi-list lang-zh"><li>一张表对应一个领域对象，需要 CRUD 与分页。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Complex joins, reporting queries, or multi-table aggregates; use sql directly.</li></ul><ul class="bi-list lang-zh"><li>复杂连接、报表查询或多表聚合；应直接使用 sql。</li></ul>                            </div>
+                        </div>
+                                                    <p class="requires">
+                                <span class="lang-en">Pulls in:</span><span class="lang-zh">会带入：</span>
+                                <a href="#sql">migears/sql</a>, <a href="#domain">migears/domain</a>, <a href="#cache">migears/cache</a>, <a href="#utils">migears/utils</a>                            </p>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-dao#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="cache"
+                             data-layer="data"
+                             data-search="migears/cache psr-16 cache with arraycache and rediscache. 符合 psr-16 的缓存，提供 arraycache 与 rediscache。 data 数据">
+                        <div class="module-head">
+                            <h3><code>migears/cache</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">PSR-16 cache with ArrayCache and RedisCache.</span><span class="lang-zh">符合 PSR-16 的缓存，提供 ArrayCache 与 RedisCache。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Read-through caching, counters, or short-lived shared state.</li></ul><ul class="bi-list lang-zh"><li>读穿缓存、计数器或短期共享状态。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Durable data.</li><li>You have no Redis and no need for caching yet.</li></ul><ul class="bi-list lang-zh"><li>需要持久化数据。</li><li>没有 Redis，也暂时不需要缓存。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-cache#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="data-structure"
+                             data-layer="data"
+                             data-search="migears/data-structure explicit redis hash, list, set, and zset semantics, plus locks. 明确的 redis hash、list、set、zset 语义，另含锁。 data 数据">
+                        <div class="module-head">
+                            <h3><code>migears/data-structure</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Explicit Redis Hash, List, Set, and ZSet semantics, plus locks.</span><span class="lang-zh">明确的 Redis Hash、List、Set、ZSet 语义，另含锁。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Queues, leaderboards, sets, counters, or distributed locks on Redis.</li></ul><ul class="bi-list lang-zh"><li>Redis 上的队列、排行榜、集合、计数器或分布式锁。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You only need key-value caching; use cache.</li><li>You have no Redis.</li></ul><ul class="bi-list lang-zh"><li>只需要键值缓存；应使用 cache。</li><li>没有 Redis。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-data-structure#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="mitable"
+                             data-layer="data"
+                             data-search="migears/mitable single-table execution helper for one-off migrations: ddl, crud, introspection, and cursor iteration. 面向一次性迁移的单表执行助手：ddl、crud、内省与游标迭代。 data 数据">
+                        <div class="module-head">
+                            <h3><code>migears/mitable</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Single-table execution helper for one-off migrations: DDL, CRUD, introspection, and cursor iteration.</span><span class="lang-zh">面向一次性迁移的单表执行助手：DDL、CRUD、内省与游标迭代。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Data import/export, one-off backfills, or schema introspection.</li></ul><ul class="bi-list lang-zh"><li>数据导入导出、一次性回填或表结构内省。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Runtime application data access; use dao or sql.</li><li>Multi-table migration suites.</li></ul><ul class="bi-list lang-zh"><li>应用运行时数据访问；应使用 dao 或 sql。</li><li>多表迁移套件。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-mitable#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                            </div>
+        </div>
+    </section>
+    <section class="section section-tight layer-section" data-layer-section="foundation">
+        <div class="wrap">
+            <div class="layer-head">
+                <h2><span class="lang-en">Foundation</span><span class="lang-zh">基础</span></h2>
+                <p><span class="lang-en">Cross-cutting pieces every project eventually needs.</span><span class="lang-zh">每个项目迟早会用到的横切能力。</span></p>
+            </div>
+            <div class="module-list">
+                                                        <article class="module-card" id="utils"
+                             data-layer="foundation"
+                             data-search="migears/utils immutable url and pagination dtos. 不可变 url 与分页 dto。 foundation 基础">
+                        <div class="module-head">
+                            <h3><code>migears/utils</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Immutable URL and pagination DTOs.</span><span class="lang-zh">不可变 URL 与分页 DTO。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Building or parsing URLs, or carrying pagination metadata.</li></ul><ul class="bi-list lang-zh"><li>构建或解析 URL，或传递分页元数据。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need a full HTTP message library.</li></ul><ul class="bi-list lang-zh"><li>需要完整的 HTTP 消息库。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-utils#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="wiring"
+                             data-layer="foundation"
+                             data-search="migears/wiring config-driven psr-11 container wiring from a php array of factories. 用 php 工厂数组按配置装配 psr-11 容器。 foundation 基础">
+                        <div class="module-head">
+                            <h3><code>migears/wiring</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Config-driven PSR-11 container wiring from a PHP array of factories.</span><span class="lang-zh">用 PHP 工厂数组按配置装配 PSR-11 容器。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Several entry points share one service configuration.</li></ul><ul class="bi-list lang-zh"><li>多个入口共享同一份服务配置。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>A single entry point can register services inline.</li></ul><ul class="bi-list lang-zh"><li>单个入口直接注册服务就足够了。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-wiring#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="log"
+                             data-layer="foundation"
+                             data-search="migears/log psr-3 logger with file, stream, and custom handlers. 符合 psr-3 的日志器，支持文件、流与自定义 handler。 foundation 基础">
+                        <div class="module-head">
+                            <h3><code>migears/log</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">PSR-3 logger with file, stream, and custom handlers.</span><span class="lang-zh">符合 PSR-3 的日志器，支持文件、流与自定义 handler。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Any application that needs logs.</li></ul><ul class="bi-list lang-zh"><li>任何需要日志的应用。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Library code; libraries should accept a PSR-3 logger and stay silent by default.</li></ul><ul class="bi-list lang-zh"><li>库代码；库应接受 PSR-3 logger 并默认静默。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-log#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="debug"
+                             data-layer="foundation"
+                             data-search="migears/debug developer-friendly exception and error page. 面向开发者的异常与错误页面。 foundation 基础">
+                        <div class="module-head">
+                            <h3><code>migears/debug</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Developer-friendly exception and error page.</span><span class="lang-zh">面向开发者的异常与错误页面。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Local development and staging.</li></ul><ul class="bi-list lang-zh"><li>本地开发与预发布环境。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Production; never expose detailed errors.</li></ul><ul class="bi-list lang-zh"><li>生产环境；绝不要暴露详细错误。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-debug#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="http-exceptions"
+                             data-layer="foundation"
+                             data-search="migears/http-exceptions minimal http exception classes for 4xx and 5xx responses. 极简 http 异常类，覆盖 4xx 与 5xx。 foundation 基础">
+                        <div class="module-head">
+                            <h3><code>migears/http-exceptions</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Minimal HTTP exception classes for 4xx and 5xx responses.</span><span class="lang-zh">极简 HTTP 异常类，覆盖 4xx 与 5xx。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Services throw HTTP-aware exceptions that the web layer maps to responses.</li></ul><ul class="bi-list lang-zh"><li>服务层抛出带 HTTP 语义的异常，由 Web 层映射为响应。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You only need a single 404 helper.</li></ul><ul class="bi-list lang-zh"><li>只需要一个 404 辅助方法。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-http-exceptions#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="i18n"
+                             data-layer="foundation"
+                             data-search="migears/i18n array and gettext translations plus timezone-aware date rendering. 数组与 gettext 翻译，外加时区感知的日期渲染。 foundation 基础">
+                        <div class="module-head">
+                            <h3><code>migears/i18n</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Array and gettext translations plus timezone-aware date rendering.</span><span class="lang-zh">数组与 gettext 翻译，外加时区感知的日期渲染。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Multi-language UI or localized date formatting.</li></ul><ul class="bi-list lang-zh"><li>多语言界面或本地化日期格式。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Single-language projects.</li></ul><ul class="bi-list lang-zh"><li>单语言项目。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-i18n#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                            </div>
+        </div>
+    </section>
+    <section class="section section-tight layer-section" data-layer-section="integration">
+        <div class="wrap">
+            <div class="layer-head">
+                <h2><span class="lang-en">Integration</span><span class="lang-zh">集成</span></h2>
+                <p><span class="lang-en">Edges to the outside world: mail, jobs, RPC, AI, media.</span><span class="lang-zh">通向外部世界的边缘：邮件、任务、RPC、AI、媒体。</span></p>
+            </div>
+            <div class="module-list">
+                                                        <article class="module-card" id="jobs"
+                             data-layer="integration"
+                             data-search="migears/jobs fire-and-forget background processes. 发射后不管的后台进程。 integration 集成">
+                        <div class="module-head">
+                            <h3><code>migears/jobs</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Fire-and-forget background processes.</span><span class="lang-zh">发射后不管的后台进程。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Emails, thumbnails, or exports that can run after the response.</li></ul><ul class="bi-list lang-zh"><li>可以在响应之后执行的邮件、缩略图或导出。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need retries, scheduling, or at-least-once delivery.</li></ul><ul class="bi-list lang-zh"><li>需要重试、调度或至少一次投递保证。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-jobs#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="mail"
+                             data-layer="integration"
+                             data-search="migears/mail mail sending through native mail() and smtp, with attachments and html/text bodies. 通过原生 mail() 与 smtp 发信，支持附件与 html/纯文本正文。 integration 集成">
+                        <div class="module-head">
+                            <h3><code>migears/mail</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">Mail sending through native mail() and SMTP, with attachments and HTML/text bodies.</span><span class="lang-zh">通过原生 mail() 与 SMTP 发信，支持附件与 HTML/纯文本正文。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Transactional email from your own infrastructure.</li></ul><ul class="bi-list lang-zh"><li>从自有基础设施发送事务性邮件。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>High-volume marketing email.</li><li>You need a provider SDK or delivery analytics.</li></ul><ul class="bi-list lang-zh"><li>大批量营销邮件。</li><li>需要服务商 SDK 或送达分析。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-mail#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="rpc"
+                             data-layer="integration"
+                             data-search="migears/rpc json-rpc 2.0 client and server. json-rpc 2.0 客户端与服务端。 integration 集成">
+                        <div class="module-head">
+                            <h3><code>migears/rpc</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">JSON-RPC 2.0 client and server.</span><span class="lang-zh">JSON-RPC 2.0 客户端与服务端。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Internal service-to-service JSON-RPC.</li></ul><ul class="bi-list lang-zh"><li>内部服务之间的 JSON-RPC。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>REST or general HTTP APIs; use web.</li><li>Streaming transports.</li></ul><ul class="bi-list lang-zh"><li>REST 或通用 HTTP API；应使用 web。</li><li>流式传输。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-rpc#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="ai-proxy"
+                             data-layer="integration"
+                             data-search="migears/ai-proxy sse relay plus an openai-compatible model abstraction. sse 中继与 openai 兼容的模型抽象。 integration 集成">
+                        <div class="module-head">
+                            <h3><code>migears/ai-proxy</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">SSE relay plus an OpenAI-compatible model abstraction.</span><span class="lang-zh">SSE 中继与 OpenAI 兼容的模型抽象。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Streaming AI responses through your backend.</li></ul><ul class="bi-list lang-zh"><li>通过自己的后端流式转发 AI 响应。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Non-streaming batch jobs.</li><li>The browser can call the provider directly and no server-side key is needed.</li></ul><ul class="bi-list lang-zh"><li>非流式批处理任务。</li><li>浏览器可以直接调用服务商，且不需要在服务端保管密钥。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-ai-proxy#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="image"
+                             data-layer="integration"
+                             data-search="migears/image gd-based resize, crop, watermark, and format conversion. 基于 gd 的缩放、裁剪、水印与格式转换。 integration 集成">
+                        <div class="module-head">
+                            <h3><code>migears/image</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">GD-based resize, crop, watermark, and format conversion.</span><span class="lang-zh">基于 GD 的缩放、裁剪、水印与格式转换。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Upload thumbnails or watermarked derivatives.</li></ul><ul class="bi-list lang-zh"><li>上传缩略图或带水印的派生图。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Advanced filters, color profiles, or non-GD pipelines.</li></ul><ul class="bi-list lang-zh"><li>高级滤镜、色彩配置或非 GD 处理管线。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-image#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                                                        <article class="module-card" id="captcha"
+                             data-layer="integration"
+                             data-search="migears/captcha gd captcha generator and verifier. 基于 gd 的验证码生成与校验。 integration 集成">
+                        <div class="module-head">
+                            <h3><code>migears/captcha</code></h3>
+                            <span class="badge badge-ok">Packagist 2.0.0</span>                        </div>
+                        <p class="module-summary"><span class="lang-en">GD captcha generator and verifier.</span><span class="lang-zh">基于 GD 的验证码生成与校验。</span></p>
+                        <div class="module-grid">
+                            <div>
+                                <h4><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h4>
+                                <ul class="bi-list lang-en"><li>Simple bot protection on public forms.</li></ul><ul class="bi-list lang-zh"><li>公开表单上的基础机器人防护。</li></ul>                            </div>
+                            <div>
+                                <h4><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h4>
+                                <ul class="bi-list lang-en"><li>You need enterprise bot detection or accessibility-first alternatives.</li></ul><ul class="bi-list lang-zh"><li>需要企业级机器人检测或以无障碍为先的替代方案。</li></ul>                            </div>
+                        </div>
+                                                                        <a class="readme-link" href="https://github.com/samxxu/migears-captcha#readme">
+                            <span class="lang-en">README</span><span class="lang-zh">模块文档</span> →
+                        </a>
+                    </article>
+                            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="wrap footer-inner">
+        <p>
+            <span class="lang-en">miGears is pre-release. Each module README is the authoritative source.</span>
+            <span class="lang-zh">miGears 处于 pre-release。各模块 README 是权威来源。</span>
+        </p>
+        <p class="footer-links">
+            <a href="https://github.com/samxxu/migears-entry">GitHub</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/AGENTS.md">AGENTS.md</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/llms.txt">llms.txt</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/modules.yaml">modules.yaml</a>
+        </p>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

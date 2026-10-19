@@ -1,0 +1,49 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  metadata:
+    name: Metadata and site
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: yaml
+          coverage: none
+
+      - name: Verify metadata
+        run: php tools/verify.php
+
+      - name: Build the site
+        run: php tools/build.php
+
+      - name: Check that docs/ is current
+        run: git diff --exit-code docs
+
+  starter-lint:
+    name: Starter syntax
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+
+      # The full smoke test needs the 2.3 module tree. It runs in the workspace
+      # until 2.3 is pushed to the public repositories and published.
+      - name: Lint
+        run: find starters/minimal-site -name '*.php' -not -path '*/vendor/*' -not -path '*/.modules/*' -print0 | xargs -0 -n1 php -l

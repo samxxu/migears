@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-en="miGears — pick the pieces, not the pile" data-title-zh="miGears — 选对模块，而不是全装">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Module map, selection guide, and ready-made stacks for the miGears PHP framework.">
+    <title>miGears — pick the pieces, not the pile</title>
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="wrap header-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">mi</span>Gears</a>
+        <nav class="site-nav" aria-label="Main">
+                            <a href="index.html" class="active" aria-current="page"><span class="lang-en">Overview</span><span class="lang-zh">概览</span></a>
+                            <a href="modules.html"><span class="lang-en">Modules</span><span class="lang-zh">模块</span></a>
+                            <a href="choose.html"><span class="lang-en">Choose</span><span class="lang-zh">选型</span></a>
+                            <a href="stacks.html"><span class="lang-en">Stacks</span><span class="lang-zh">组合</span></a>
+                    </nav>
+        <button class="lang-toggle" type="button" aria-label="Switch language">中文</button>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+    <div class="wrap">
+        <p class="eyebrow">
+            <span class="lang-en">30 modules · 6 layers · 4 stacks</span>
+            <span class="lang-zh">30 个模块 · 6 层 · 4 套组合</span>
+        </p>
+        <h1>
+            <span class="lang-en">Pick the pieces,<br>not the pile.</span>
+            <span class="lang-zh">选对模块，<br>而不是全装。</span>
+        </h1>
+        <p class="lede">
+            <span class="lang-en">miGears is 30 small PHP packages. This site tells you which few to install, how they fit together, and what to leave out.</span>
+            <span class="lang-zh">miGears 是 30 个小型 PHP 包。本站告诉你该装哪几个、它们如何搭配，以及哪些可以不要。</span>
+        </p>
+        <div class="hero-actions">
+            <a class="button button-primary" href="stacks.html">
+                <span class="lang-en">Choose a stack</span><span class="lang-zh">选择组合</span>
+            </a>
+            <a class="button" href="modules.html">
+                <span class="lang-en">Browse the map</span><span class="lang-zh">浏览模块地图</span>
+            </a>
+            <a class="button button-quiet" href="https://github.com/samxxu/migears-entry/blob/main/AGENTS.md">
+                <span class="lang-en">For AI agents</span><span class="lang-zh">给 AI agent</span>
+            </a>
+        </div>
+        <p class="version-note">
+            <span class="lang-en">Workspace version 2.3.0 · pre-release · Packagist versions may lag behind.</span>
+            <span class="lang-zh">工作区版本 2.3.0 · pre-release · Packagist 上的版本可能滞后。</span>
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="wrap">
+        <div class="section-head">
+            <h2><span class="lang-en">60-second start</span><span class="lang-zh">60 秒起步</span></h2>
+            <p>
+                <span class="lang-en">The minimal starter is a real project: routing, a template, a logger, and a dev error page.</span>
+                <span class="lang-zh">最小 starter 是一个真项目：路由、模板、日志与开发错误页。</span>
+            </p>
+        </div>
+        <div class="code-block">
+            <button class="copy" type="button" data-copy>Copy</button>
+            <pre><code>git clone https://github.com/samxxu/migears-entry.git
+cd migears/starters/minimal-site
+php bin/setup.php
+php -S 127.0.0.1:8080 -t public public/index.php</code></pre>
+        </div>
+        <p class="version-note">
+            <span class="lang-en">M1 starter runs against the current 2.3 tree. The public repositories may lag until the current test round is released.</span>
+            <span class="lang-zh">M1 starter 运行在当前 2.3 代码树上。当前测试轮发布前，公开仓库可能滞后。</span>
+        </p>
+    </div>
+</section>
+
+<section class="section section-alt" id="map">
+    <div class="wrap">
+        <div class="section-head">
+            <h2><span class="lang-en">The module map</span><span class="lang-zh">模块地图</span></h2>
+            <p>
+                <span class="lang-en">Six layers. The same layer is not a bundle: install a module only when it earns its place.</span>
+                <span class="lang-zh">六个层次。同一层不是套餐：只有真正有用的模块才装。</span>
+            </p>
+        </div>
+        <div class="layer-map">
+                            <div class="layer-row">
+                    <div class="layer-label">
+                        <strong><span class="lang-en">HTTP</span><span class="lang-zh">HTTP</span></strong>
+                        <span><span class="lang-en">Routing, request handling, and access control at the edge.</span><span class="lang-zh">路由、请求处理与边缘访问控制。</span></span>
+                    </div>
+                    <div class="layer-mods">
+                                                    <a class="chip chip-core"
+                               href="modules.html#web">migears/web</a>
+                                                    <a class="chip"
+                               href="modules.html#web-guards">migears/web-guards</a>
+                                                    <a class="chip"
+                               href="modules.html#acl-feature">migears/acl-feature</a>
+                                                    <a class="chip"
+                               href="modules.html#security-token-auth">migears/security-token-auth</a>
+                                            </div>
+                </div>
+                            <div class="layer-row">
+                    <div class="layer-label">
+                        <strong><span class="lang-en">View</span><span class="lang-zh">视图</span></strong>
+                        <span><span class="lang-en">Turning data into HTML, from native templates to declarative pages.</span><span class="lang-zh">把数据变成 HTML，从原生模板到声明式页面。</span></span>
+                    </div>
+                    <div class="layer-mods">
+                                                    <a class="chip chip-core"
+                               href="modules.html#template">migears/template</a>
+                                                    <a class="chip"
+                               href="modules.html#pages">migears/pages</a>
+                                                    <a class="chip"
+                               href="modules.html#yaml-pages">migears/yaml-pages</a>
+                                                    <a class="chip"
+                               href="modules.html#xml-pages">migears/xml-pages</a>
+                                                    <a class="chip"
+                               href="modules.html#html-digest">migears/html-digest</a>
+                                            </div>
+                </div>
+                            <div class="layer-row">
+                    <div class="layer-label">
+                        <strong><span class="lang-en">Business</span><span class="lang-zh">业务</span></strong>
+                        <span><span class="lang-en">Domain objects, validation, orchestration, and security primitives.</span><span class="lang-zh">领域对象、校验、编排与安全原语。</span></span>
+                    </div>
+                    <div class="layer-mods">
+                                                    <a class="chip"
+                               href="modules.html#domain">migears/domain</a>
+                                                    <a class="chip"
+                               href="modules.html#manager">migears/manager</a>
+                                                    <a class="chip"
+                               href="modules.html#validator">migears/validator</a>
+                                                    <a class="chip"
+                               href="modules.html#security">migears/security</a>
+                                            </div>
+                </div>
+                            <div class="layer-row">
+                    <div class="layer-label">
+                        <strong><span class="lang-en">Data</span><span class="lang-zh">数据</span></strong>
+                        <span><span class="lang-en">SQL, persistence, caching, Redis structures, and one-off migrations.</span><span class="lang-zh">SQL、持久化、缓存、Redis 结构与一次性迁移。</span></span>
+                    </div>
+                    <div class="layer-mods">
+                                                    <a class="chip"
+                               href="modules.html#sql">migears/sql</a>
+                                                    <a class="chip"
+                               href="modules.html#dao">migears/dao</a>
+                                                    <a class="chip"
+                               href="modules.html#cache">migears/cache</a>
+                                                    <a class="chip"
+                               href="modules.html#data-structure">migears/data-structure</a>
+                                                    <a class="chip"
+                               href="modules.html#mitable">migears/mitable</a>
+                                            </div>
+                </div>
+                            <div class="layer-row">
+                    <div class="layer-label">
+                        <strong><span class="lang-en">Foundation</span><span class="lang-zh">基础</span></strong>
+                        <span><span class="lang-en">Cross-cutting pieces every project eventually needs.</span><span class="lang-zh">每个项目迟早会用到的横切能力。</span></span>
+                    </div>
+                    <div class="layer-mods">
+                                                    <a class="chip"
+                               href="modules.html#utils">migears/utils</a>
+                                                    <a class="chip"
+                               href="modules.html#wiring">migears/wiring</a>
+                                                    <a class="chip"
+                               href="modules.html#log">migears/log</a>
+                                                    <a class="chip"
+                               href="modules.html#debug">migears/debug</a>
+                                                    <a class="chip"
+                               href="modules.html#http-exceptions">migears/http-exceptions</a>
+                                                    <a class="chip"
+                               href="modules.html#i18n">migears/i18n</a>
+                                            </div>
+                </div>
+                            <div class="layer-row">
+                    <div class="layer-label">
+                        <strong><span class="lang-en">Integration</span><span class="lang-zh">集成</span></strong>
+                        <span><span class="lang-en">Edges to the outside world: mail, jobs, RPC, AI, media.</span><span class="lang-zh">通向外部世界的边缘：邮件、任务、RPC、AI、媒体。</span></span>
+                    </div>
+                    <div class="layer-mods">
+                                                    <a class="chip"
+                               href="modules.html#jobs">migears/jobs</a>
+                                                    <a class="chip"
+                               href="modules.html#mail">migears/mail</a>
+                                                    <a class="chip"
+                               href="modules.html#rpc">migears/rpc</a>
+                                                    <a class="chip"
+                               href="modules.html#ai-proxy">migears/ai-proxy</a>
+                                                    <a class="chip"
+                               href="modules.html#image">migears/image</a>
+                                                    <a class="chip"
+                               href="modules.html#captcha">migears/captcha</a>
+                                            </div>
+                </div>
+                    </div>
+        <p class="map-note">
+            <span class="lang-en">All modules share one release train. A few are still completing their test round; that is release timing, not a functional difference.</span>
+            <span class="lang-zh">所有模块在同一条发布列车上。少数模块仍在完成测试轮；这是发布节奏，不是功能差异。</span>
+        </p>
+    </div>
+</section>
+
+<section class="section" id="stacks">
+    <div class="wrap">
+        <div class="section-head">
+            <h2><span class="lang-en">Four stacks, four starting points</span><span class="lang-zh">四套组合，四个起点</span></h2>
+            <p>
+                <span class="lang-en">Start with one. Remove what you do not need. Add a module only when its “use when” matches.</span>
+                <span class="lang-zh">先选一套，去掉不需要的，再只在“适用”命中时添加模块。</span>
+            </p>
+        </div>
+        <div class="recipe-grid">
+                            <a class="card recipe-card" href="stacks.html#minimal-site">
+                    <h3><span class="lang-en">Minimal site</span><span class="lang-zh">小站 / 原型</span></h3>
+                    <p><span class="lang-en">Plain PHP templates, no database.</span><span class="lang-zh">纯 PHP 模板，没有数据库。</span></p>
+                    <p class="recipe-count">5                        <span class="lang-en">direct packages</span><span class="lang-zh">个直接依赖</span>
+                    </p>
+                    <div class="pill-row">
+                                                    <span class="pill pill-direct">migears/web</span>
+                                                    <span class="pill pill-direct">migears/template</span>
+                                                    <span class="pill pill-direct">migears/log</span>
+                                                    <span class="pill pill-direct">migears/debug</span>
+                                                                            <span class="pill pill-more">+1</span>
+                                            </div>
+                </a>
+                            <a class="card recipe-card" href="stacks.html#content-site">
+                    <h3><span class="lang-en">Content site</span><span class="lang-zh">内容站 / 后台</span></h3>
+                    <p><span class="lang-en">Repetitive pages and forms, with a page front-end of your choice.</span><span class="lang-zh">页面与表单重复，页面前端按喜好自选。</span></p>
+                    <p class="recipe-count">7                        <span class="lang-en">direct packages</span><span class="lang-zh">个直接依赖</span>
+                    </p>
+                    <div class="pill-row">
+                                                    <span class="pill pill-direct">migears/web</span>
+                                                    <span class="pill pill-direct">migears/yaml-pages</span>
+                                                    <span class="pill pill-direct">migears/validator</span>
+                                                    <span class="pill pill-direct">migears/security</span>
+                                                                            <span class="pill pill-more">+3</span>
+                                            </div>
+                </a>
+                            <a class="card recipe-card" href="stacks.html#rest-api">
+                    <h3><span class="lang-en">REST API</span><span class="lang-zh">REST API</span></h3>
+                    <p><span class="lang-en">JSON in, JSON out. No HTML.</span><span class="lang-zh">只输出 JSON，不渲染 HTML。</span></p>
+                    <p class="recipe-count">6                        <span class="lang-en">direct packages</span><span class="lang-zh">个直接依赖</span>
+                    </p>
+                    <div class="pill-row">
+                                                    <span class="pill pill-direct">migears/web</span>
+                                                    <span class="pill pill-direct">migears/log</span>
+                                                    <span class="pill pill-direct">migears/http-exceptions</span>
+                                                    <span class="pill pill-direct">migears/validator</span>
+                                                                            <span class="pill pill-more">+2</span>
+                                            </div>
+                </a>
+                            <a class="card recipe-card" href="stacks.html#mobile-api">
+                    <h3><span class="lang-en">Mobile API</span><span class="lang-zh">移动端 / 开放 API</span></h3>
+                    <p><span class="lang-en">REST API plus native-client login with refresh rotation.</span><span class="lang-zh">REST API 加原生客户端登录与刷新轮换。</span></p>
+                    <p class="recipe-count">7                        <span class="lang-en">direct packages</span><span class="lang-zh">个直接依赖</span>
+                    </p>
+                    <div class="pill-row">
+                                                    <span class="pill pill-direct">migears/web</span>
+                                                    <span class="pill pill-direct">migears/log</span>
+                                                    <span class="pill pill-direct">migears/http-exceptions</span>
+                                                    <span class="pill pill-direct">migears/validator</span>
+                                                                            <span class="pill pill-more">+3</span>
+                                            </div>
+                </a>
+                    </div>
+    </div>
+</section>
+
+<section class="section section-agent">
+    <div class="wrap agent-inner">
+        <div>
+            <h2><span class="lang-en">Built to be read by agents</span><span class="lang-zh">也为 AI agent 而写</span></h2>
+            <p>
+                <span class="lang-en">The same facts the site uses are available as plain files. An agent can start from AGENTS.md, choose a recipe, and stop before installing anything that does not fit.</span>
+                <span class="lang-zh">站点使用的同一份事实也有纯文本版本。agent 从 AGENTS.md 开始，选一套组合，并在安装不合适的东西之前停下。</span>
+            </p>
+        </div>
+        <ul class="file-list">
+            <li><a href="https://github.com/samxxu/migears-entry/blob/main/AGENTS.md">AGENTS.md</a><span class="lang-en">Selection order and hard rules</span><span class="lang-zh">选型顺序与硬规则</span></li>
+            <li><a href="https://github.com/samxxu/migears-entry/blob/main/llms.txt">llms.txt</a><span class="lang-en">Compact index for LLMs</span><span class="lang-zh">面向 LLM 的紧凑索引</span></li>
+            <li><a href="https://github.com/samxxu/migears-entry/blob/main/modules.yaml">modules.yaml</a><span class="lang-en">All 30 modules as data</span><span class="lang-zh">30 个模块的结构化数据</span></li>
+            <li><a href="https://github.com/samxxu/migears-entry/blob/main/recipes.yaml">recipes.yaml</a><span class="lang-en">Four stacks and hard rules</span><span class="lang-zh">四套组合与硬规则</span></li>
+        </ul>
+    </div>
+</section>
+</main>
+
+<footer class="site-footer">
+    <div class="wrap footer-inner">
+        <p>
+            <span class="lang-en">miGears is pre-release. Each module README is the authoritative source.</span>
+            <span class="lang-zh">miGears 处于 pre-release。各模块 README 是权威来源。</span>
+        </p>
+        <p class="footer-links">
+            <a href="https://github.com/samxxu/migears-entry">GitHub</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/AGENTS.md">AGENTS.md</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/llms.txt">llms.txt</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/modules.yaml">modules.yaml</a>
+        </p>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

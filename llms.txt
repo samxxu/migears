@@ -1,0 +1,80 @@
+# miGears
+
+> 30 small, independent PHP 8.1+ packages in six layers. This repository is the entry point: module map, selection guide, four ready-made stacks, one runnable starter, and machine-readable metadata. Pre-release: the workspace tree is 2.3.0; Packagist may serve 2.0.x or 2.1.0 while the current test round finishes. All modules are on the same release train. Each module README is authoritative.
+
+## Start here
+
+- [AGENTS.md](https://github.com/samxxu/migears-entry/blob/main/AGENTS.md): selection procedure, hard rules, output contract
+- [modules.yaml](https://github.com/samxxu/migears-entry/blob/main/modules.yaml): 30 modules with use_when and avoid_when
+- [recipes.yaml](https://github.com/samxxu/migears-entry/blob/main/recipes.yaml): four stacks, composer commands, hard rules
+- [Site overview](https://samxxu.github.io/migears-entry/): human-readable version
+- [Module map](https://samxxu.github.io/migears-entry/modules.html)
+- [Selection guide](https://samxxu.github.io/migears-entry/choose.html)
+- [Stacks](https://samxxu.github.io/migears-entry/stacks.html)
+
+## Recipes
+
+- minimal-site: web, template, log, debug, http-exceptions. Server-rendered pages with plain PHP templates, no database.
+- content-site: web, one of pages / yaml-pages / xml-pages, validator, security, log, debug, http-exceptions. Repetitive pages and forms.
+- rest-api: web, log, http-exceptions, validator, dao, debug. JSON only.
+- mobile-api: rest-api plus security-token-auth. Native clients with refresh rotation.
+
+## Rules
+
+- Never install all 30 modules.
+- All three page front-ends are valid: pages (array DSL), yaml-pages, xml-pages. Pick by preference, not by project size. yaml-pages and xml-pages pull pages in.
+- template is always valid for server-rendered HTML; a small site does not need a declarative page layer.
+- Never enable migears/debug in production.
+- migears/jobs is fire-and-forget; use a real queue for retries, scheduling, or at-least-once delivery.
+- migears/dao is single-table; use migears/sql for joins and reports.
+- Release timing is not a functional difference. All modules share one release train; a package may lag on Packagist while its test round finishes.
+
+## Modules
+
+### HTTP
+
+- [migears/web](https://github.com/samxxu/migears-web#readme): file-as-routing REST framework; MiRest is the PSR-11 container.
+- [migears/web-guards](https://github.com/samxxu/migears-web-guard#readme): before() guards for web.
+- [migears/acl-feature](https://github.com/samxxu/migears-acl-feature#readme): endpoint access matrix.
+- [migears/security-token-auth](https://github.com/samxxu/migears-security-token-auth#readme): bearer tokens for native apps with refresh rotation.
+
+### View
+
+- [migears/template](https://github.com/samxxu/migears-template#readme): native PHP templates with auto-escaping and layouts.
+- [migears/pages](https://github.com/samxxu/migears-pages#readme): core declarative page compiler.
+- [migears/yaml-pages](https://github.com/samxxu/migears-yaml-pages#readme): YAML page definitions.
+- [migears/xml-pages](https://github.com/samxxu/migears-xml-pages#readme): XML page definitions.
+- [migears/html-digest](https://github.com/samxxu/migears-html-digest#readme): summaries and word counts from HTML.
+
+### Business
+
+- [migears/domain](https://github.com/samxxu/migears-domain#readme): self-validating data containers.
+- [migears/manager](https://github.com/samxxu/migears-manager#readme): business orchestration and events.
+- [migears/validator](https://github.com/samxxu/migears-validator#readme): declarative validation with error codes.
+- [migears/security](https://github.com/samxxu/migears-security#readme): sessions, CSRF, passwords, remember-me, sanitizer.
+
+### Data
+
+- [migears/sql](https://github.com/samxxu/migears-sql#readme): SQL query builder.
+- [migears/dao](https://github.com/samxxu/migears-dao#readme): single-table DAO trait with cache invalidation.
+- [migears/cache](https://github.com/samxxu/migears-cache#readme): PSR-16 cache, ArrayCache and RedisCache.
+- [migears/data-structure](https://github.com/samxxu/migears-data-structure#readme): Redis Hash, List, Set, ZSet, locks.
+- [migears/mitable](https://github.com/samxxu/migears-mitable#readme): one-off single-table migrations and introspection.
+
+### Foundation
+
+- [migears/utils](https://github.com/samxxu/migears-utils#readme): immutable URL and pagination DTOs.
+- [migears/wiring](https://github.com/samxxu/migears-wiring#readme): config-driven PSR-11 wiring.
+- [migears/log](https://github.com/samxxu/migears-log#readme): PSR-3 logger.
+- [migears/debug](https://github.com/samxxu/migears-debug#readme): development error page.
+- [migears/http-exceptions](https://github.com/samxxu/migears-http-exceptions#readme): HTTP exception classes.
+- [migears/i18n](https://github.com/samxxu/migears-i18n#readme): translations and localized dates.
+
+### Integration
+
+- [migears/jobs](https://github.com/samxxu/migears-jobs#readme): fire-and-forget background processes.
+- [migears/mail](https://github.com/samxxu/migears-mail#readme): native mail() and SMTP.
+- [migears/rpc](https://github.com/samxxu/migears-rpc#readme): JSON-RPC 2.0 client and server.
+- [migears/ai-proxy](https://github.com/samxxu/migears-ai-proxy#readme): SSE relay and OpenAI-compatible abstraction.
+- [migears/image](https://github.com/samxxu/migears-image#readme): GD resize, crop, watermark, convert.
+- [migears/captcha](https://github.com/samxxu/migears-captcha#readme): GD captcha generator and verifier.

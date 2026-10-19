@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-en="miGears — selection guide" data-title-zh="miGears — 选型指南">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Four questions that lead to a miGears stack.">
+    <title>miGears — selection guide</title>
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="wrap header-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">mi</span>Gears</a>
+        <nav class="site-nav" aria-label="Main">
+                            <a href="index.html"><span class="lang-en">Overview</span><span class="lang-zh">概览</span></a>
+                            <a href="modules.html"><span class="lang-en">Modules</span><span class="lang-zh">模块</span></a>
+                            <a href="choose.html" class="active" aria-current="page"><span class="lang-en">Choose</span><span class="lang-zh">选型</span></a>
+                            <a href="stacks.html"><span class="lang-en">Stacks</span><span class="lang-zh">组合</span></a>
+                    </nav>
+        <button class="lang-toggle" type="button" aria-label="Switch language">中文</button>
+    </div>
+</header>
+
+<main>
+    <section class="page-head">
+    <div class="wrap">
+        <p class="eyebrow"><span class="lang-en">Selection guide</span><span class="lang-zh">选型指南</span></p>
+        <h1><span class="lang-en">Three forks, four stacks</span><span class="lang-zh">三个岔路，四套组合</span></h1>
+        <p class="lede">
+            <span class="lang-en">Do not start from a module list. Start from what the project serves and who maintains it.</span>
+            <span class="lang-zh">不要从模块清单开始，从项目输出什么、由谁维护开始。</span>
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="wrap">
+        <div class="fork-grid">
+            <article class="card fork-card">
+                <p class="fork-index">01</p>
+                <h3><span class="lang-en">Does the project serve HTML?</span><span class="lang-zh">项目输出 HTML 吗？</span></h3>
+                <p>
+                    <span class="lang-en">JSON only means no view layer at all. Server-rendered pages mean you need a template engine.</span>
+                    <span class="lang-zh">只输出 JSON 就不需要视图层；服务端渲染页面则需要模板引擎。</span>
+                </p>
+                <div class="fork-answers">
+                    <a href="stacks.html#rest-api"><span class="lang-en">No, JSON only → REST API</span><span class="lang-zh">否，只输出 JSON → REST API</span></a>
+                    <a href="#fork-pages"><span class="lang-en">Yes → next question</span><span class="lang-zh">是 → 下一个问题</span></a>
+                </div>
+            </article>
+
+            <article class="card fork-card" id="fork-pages">
+                <p class="fork-index">02</p>
+                <h3><span class="lang-en">Are pages structurally repetitive?</span><span class="lang-zh">页面结构重复吗？</span></h3>
+                <p>
+                    <span class="lang-en">Page count is a weak signal. Repetition and who edits the page matter more.</span>
+                    <span class="lang-zh">页数不是好判据。结构重复度与页面由谁编辑更重要。</span>
+                </p>
+                <div class="fork-answers">
+                    <a href="stacks.html#minimal-site"><span class="lang-en">No → Minimal site</span><span class="lang-zh">否 → 小站</span></a>
+                    <a href="stacks.html#content-site"><span class="lang-en">Yes → Content site</span><span class="lang-zh">是 → 内容站</span></a>
+                </div>
+            </article>
+
+            <article class="card fork-card">
+                <p class="fork-index">03</p>
+                <h3><span class="lang-en">Do native clients need login?</span><span class="lang-zh">原生客户端需要登录吗？</span></h3>
+                <p>
+                    <span class="lang-en">Native apps need bearer tokens and refresh rotation, not browser sessions.</span>
+                    <span class="lang-zh">原生应用需要 Bearer token 与刷新轮换，而不是浏览器会话。</span>
+                </p>
+                <div class="fork-answers">
+                    <a href="stacks.html#rest-api"><span class="lang-en">No → REST API</span><span class="lang-zh">否 → REST API</span></a>
+                    <a href="stacks.html#mobile-api"><span class="lang-en">Yes → Mobile API</span><span class="lang-zh">是 → 移动端 API</span></a>
+                </div>
+            </article>
+        </div>
+        <p class="map-note">
+            <span class="lang-en">Declarative pages are optional. If you want them, pick pages (array DSL), yaml-pages, or xml-pages by preference. Plain template is always valid, including for a small site.</span>
+            <span class="lang-zh">声明式页面不是必需。想用时，按喜好选择 pages（数组 DSL）、yaml-pages 或 xml-pages；纯 template 始终有效，页面少时也一样。</span>
+        </p>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="wrap">
+        <div class="section-head">
+            <h2><span class="lang-en">The matrix</span><span class="lang-zh">对照表</span></h2>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th><span class="lang-en">Question</span><span class="lang-zh">问题</span></th>
+                    <th><span class="lang-en">No</span><span class="lang-zh">否</span></th>
+                    <th><span class="lang-en">Yes</span><span class="lang-zh">是</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span class="lang-en">Does the project serve HTML?</span><span class="lang-zh">项目输出 HTML 吗？</span></td>
+                    <td><a href="stacks.html#rest-api">REST API</a></td>
+                    <td><span class="lang-en">Ask about pages</span><span class="lang-zh">继续问页面</span></td>
+                </tr>
+                <tr>
+                    <td><span class="lang-en">Are pages repetitive or edited by non-PHP users?</span><span class="lang-zh">页面重复，或由非 PHP 人员编辑吗？</span></td>
+                    <td><a href="stacks.html#minimal-site">Minimal site</a></td>
+                    <td><a href="stacks.html#content-site">Content site</a></td>
+                </tr>
+                <tr>
+                    <td><span class="lang-en">Do native clients need login?</span><span class="lang-zh">原生客户端需要登录吗？</span></td>
+                    <td><a href="stacks.html#rest-api">REST API</a></td>
+                    <td><a href="stacks.html#mobile-api">Mobile API</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="wrap">
+        <div class="section-head">
+            <h2><span class="lang-en">Hard rules</span><span class="lang-zh">硬规则</span></h2>
+            <p>
+                <span class="lang-en">These are not preferences. They are the mistakes the metadata is meant to prevent.</span>
+                <span class="lang-zh">这些不是偏好，而是元数据要防住的错误。</span>
+            </p>
+        </div>
+        <ul class="rule-list">
+                            <li><span class="lang-en">Never install all 30 modules. Start from a recipe and add only when use_when matches.</span><span class="lang-zh">绝不安装全部 30 个模块。从组合起步，只在 use_when 命中时添加。</span></li>
+                            <li><span class="lang-en">All three page front-ends are valid. pages is the array DSL; yaml-pages and xml-pages are file formats. Pick by preference, not by project size.</span><span class="lang-zh">三种页面前端都可用。pages 是数组 DSL；yaml-pages 与 xml-pages 是文件格式。按喜好选择，而不是按项目大小。</span></li>
+                            <li><span class="lang-en">Never enable migears/debug in production.</span><span class="lang-zh">绝不要在生产环境启用 migears/debug。</span></li>
+                            <li><span class="lang-en">migears/jobs is fire-and-forget. If the task needs retries, scheduling, or at-least-once delivery, choose a real queue.</span><span class="lang-zh">migears/jobs 是发射后不管。任务需要重试、调度或至少一次投递时，应选择真正的队列。</span></li>
+                            <li><span class="lang-en">migears/dao is single-table. Use migears/sql directly for joins, reports, and multi-table aggregates.</span><span class="lang-zh">migears/dao 面向单表。连接、报表与多表聚合应直接使用 migears/sql。</span></li>
+                    </ul>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="wrap">
+        <div class="section-head">
+            <h2><span class="lang-en">Add-ons</span><span class="lang-zh">按需叠加</span></h2>
+            <p>
+                <span class="lang-en">Add one only when the first column is true. If the second column is true, do not add it.</span>
+                <span class="lang-zh">只有第一列成立时才添加；第二列成立时不要添加。</span>
+            </p>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th><span class="lang-en">Module</span><span class="lang-zh">模块</span></th>
+                    <th><span class="lang-en">Add when</span><span class="lang-zh">添加条件</span></th>
+                    <th><span class="lang-en">Do not add when</span><span class="lang-zh">不要添加</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                                                        <tr>
+                        <td><a href="modules.html#i18n"><code>migears/i18n</code></a></td>
+                        <td><span class="lang-en">Multi-language UI or localized date formatting.</span><span class="lang-zh">多语言界面或本地化日期格式。</span></td>
+                        <td><span class="lang-en">Single-language projects.</span><span class="lang-zh">单语言项目。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#mail"><code>migears/mail</code></a></td>
+                        <td><span class="lang-en">Transactional email from your own infrastructure.</span><span class="lang-zh">从自有基础设施发送事务性邮件。</span></td>
+                        <td><span class="lang-en">High-volume marketing email.</span><span class="lang-zh">大批量营销邮件。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#jobs"><code>migears/jobs</code></a></td>
+                        <td><span class="lang-en">Emails, thumbnails, or exports that can run after the response.</span><span class="lang-zh">可以在响应之后执行的邮件、缩略图或导出。</span></td>
+                        <td><span class="lang-en">You need retries, scheduling, or at-least-once delivery.</span><span class="lang-zh">需要重试、调度或至少一次投递保证。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#image"><code>migears/image</code></a></td>
+                        <td><span class="lang-en">Upload thumbnails or watermarked derivatives.</span><span class="lang-zh">上传缩略图或带水印的派生图。</span></td>
+                        <td><span class="lang-en">Advanced filters, color profiles, or non-GD pipelines.</span><span class="lang-zh">高级滤镜、色彩配置或非 GD 处理管线。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#captcha"><code>migears/captcha</code></a></td>
+                        <td><span class="lang-en">Simple bot protection on public forms.</span><span class="lang-zh">公开表单上的基础机器人防护。</span></td>
+                        <td><span class="lang-en">You need enterprise bot detection or accessibility-first alternatives.</span><span class="lang-zh">需要企业级机器人检测或以无障碍为先的替代方案。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#html-digest"><code>migears/html-digest</code></a></td>
+                        <td><span class="lang-en">Search snippets, previews, reading time, or word-count limits.</span><span class="lang-zh">搜索摘要、预览、阅读时长或字数限制。</span></td>
+                        <td><span class="lang-en">Sanitizing untrusted HTML for output; use the Sanitizer in migears/security.</span><span class="lang-zh">为输出净化不可信 HTML；应使用 migears/security 中的 Sanitizer。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#ai-proxy"><code>migears/ai-proxy</code></a></td>
+                        <td><span class="lang-en">Streaming AI responses through your backend.</span><span class="lang-zh">通过自己的后端流式转发 AI 响应。</span></td>
+                        <td><span class="lang-en">Non-streaming batch jobs.</span><span class="lang-zh">非流式批处理任务。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#data-structure"><code>migears/data-structure</code></a></td>
+                        <td><span class="lang-en">Queues, leaderboards, sets, counters, or distributed locks on Redis.</span><span class="lang-zh">Redis 上的队列、排行榜、集合、计数器或分布式锁。</span></td>
+                        <td><span class="lang-en">You only need key-value caching; use cache.</span><span class="lang-zh">只需要键值缓存；应使用 cache。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#mitable"><code>migears/mitable</code></a></td>
+                        <td><span class="lang-en">Data import/export, one-off backfills, or schema introspection.</span><span class="lang-zh">数据导入导出、一次性回填或表结构内省。</span></td>
+                        <td><span class="lang-en">Runtime application data access; use dao or sql.</span><span class="lang-zh">应用运行时数据访问；应使用 dao 或 sql。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#rpc"><code>migears/rpc</code></a></td>
+                        <td><span class="lang-en">Internal service-to-service JSON-RPC.</span><span class="lang-zh">内部服务之间的 JSON-RPC。</span></td>
+                        <td><span class="lang-en">REST or general HTTP APIs; use web.</span><span class="lang-zh">REST 或通用 HTTP API；应使用 web。</span></td>
+                    </tr>
+                                                        <tr>
+                        <td><a href="modules.html#security"><code>migears/security</code></a></td>
+                        <td><span class="lang-en">Browser login and session-based applications.</span><span class="lang-zh">浏览器登录与会话型应用。</span></td>
+                        <td><span class="lang-en">Token-only native backends; use security-token-auth.</span><span class="lang-zh">只服务原生应用的令牌后端；应改用 security-token-auth。</span></td>
+                    </tr>
+                                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</main>
+
+<footer class="site-footer">
+    <div class="wrap footer-inner">
+        <p>
+            <span class="lang-en">miGears is pre-release. Each module README is the authoritative source.</span>
+            <span class="lang-zh">miGears 处于 pre-release。各模块 README 是权威来源。</span>
+        </p>
+        <p class="footer-links">
+            <a href="https://github.com/samxxu/migears-entry">GitHub</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/AGENTS.md">AGENTS.md</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/llms.txt">llms.txt</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/modules.yaml">modules.yaml</a>
+        </p>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,749 @@
+schema: 1
+project: miGears
+version: "2.3.0"
+status: pre-release
+repository: https://github.com/samxxu/migears-entry
+site: https://samxxu.github.io/migears-entry/
+generated_note:
+  en: Module metadata is the single source of truth for this repository. Details stay in each module README.
+  zh: 模块元数据是本仓库的唯一事实源；细节以各模块 README 为准。
+
+layers:
+  - id: http
+    label: {en: HTTP, zh: HTTP}
+    purpose:
+      en: Routing, request handling, and access control at the edge.
+      zh: 路由、请求处理与边缘访问控制。
+  - id: view
+    label: {en: View, zh: 视图}
+    purpose:
+      en: Turning data into HTML, from native templates to declarative pages.
+      zh: 把数据变成 HTML，从原生模板到声明式页面。
+  - id: business
+    label: {en: Business, zh: 业务}
+    purpose:
+      en: Domain objects, validation, orchestration, and security primitives.
+      zh: 领域对象、校验、编排与安全原语。
+  - id: data
+    label: {en: Data, zh: 数据}
+    purpose:
+      en: SQL, persistence, caching, Redis structures, and one-off migrations.
+      zh: SQL、持久化、缓存、Redis 结构与一次性迁移。
+  - id: foundation
+    label: {en: Foundation, zh: 基础}
+    purpose:
+      en: Cross-cutting pieces every project eventually needs.
+      zh: 每个项目迟早会用到的横切能力。
+  - id: integration
+    label: {en: Integration, zh: 集成}
+    purpose:
+      en: "Edges to the outside world: mail, jobs, RPC, AI, media."
+      zh: 通向外部世界的边缘：邮件、任务、RPC、AI、媒体。
+
+modules:
+  - id: web
+    package: migears/web
+    dir: migears-web
+    layer: http
+    published: "2.1.0"
+    repo: https://github.com/samxxu/migears-web
+    readme: https://github.com/samxxu/migears-web#readme
+    summary:
+      en: File-as-routing REST framework; MiRest is also the PSR-11 container.
+      zh: 以文件为路由的轻量 REST 框架；MiRest 同时是 PSR-11 容器。
+    use_when:
+      en:
+        - You need HTTP routing or a JSON API.
+        - You want routes to be files and services wired in one place.
+      zh:
+        - 需要 HTTP 路由或 JSON API。
+        - 希望路由就是文件，服务在一个地方接线。
+    avoid_when:
+      en:
+        - CLI-only tools or long-running workers.
+        - You need a full MVC stack with an ORM and a middleware ecosystem.
+      zh:
+        - 纯 CLI 工具或常驻 worker。
+        - 需要带 ORM 和中间件生态的完整 MVC 栈。
+    requires: []
+
+  - id: web-guards
+    package: migears/web-guards
+    dir: migears-web-guard
+    layer: http
+    published: null
+    repo: https://github.com/samxxu/migears-web-guard
+    readme: https://github.com/samxxu/migears-web-guard#readme
+    summary:
+      en: "before() guards for migears/web: auth, CSRF, throttling, CORS, IP/UA filters, maintenance mode."
+      zh: 面向 migears/web 的 before() 守卫：认证、CSRF、限流、CORS、IP/UA 过滤、维护模式。
+    use_when:
+      en:
+        - You need cross-cutting request policy in front of every endpoint.
+      zh:
+        - 需要在所有端点之前执行统一的请求策略。
+    avoid_when:
+      en:
+        - Your gateway or proxy already enforces these policies.
+        - You need per-endpoint business rules; use a resource's before() instead.
+      zh:
+        - 网关或代理已经执行了这些策略。
+        - 需要按端点的业务规则，应使用资源自身的 before()。
+    requires: [web, data-structure]
+
+  - id: acl-feature
+    package: migears/acl-feature
+    dir: migears-acl-feature
+    layer: http
+    published: null
+    repo: https://github.com/samxxu/migears-acl-feature
+    readme: https://github.com/samxxu/migears-acl-feature#readme
+    summary:
+      en: Endpoint access control from a PHP config keyed by URL path and HTTP method, deny by default.
+      zh: 用 PHP 配置按 URL 路径与 HTTP 方法做端点访问控制，默认拒绝。
+    use_when:
+      en:
+        - You need a small, static access matrix for a small application.
+      zh:
+        - 小型应用需要一张静态的访问矩阵。
+    avoid_when:
+      en:
+        - Per-record authorization, dynamic RBAC, or ABAC.
+      zh:
+        - 按记录的授权、动态 RBAC 或 ABAC。
+    requires: []
+
+  - id: security-token-auth
+    package: migears/security-token-auth
+    dir: migears-security-token-auth
+    layer: http
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-security-token-auth
+    readme: https://github.com/samxxu/migears-security-token-auth#readme
+    summary:
+      en: Bearer token authentication for native apps, with rotating refresh tokens.
+      zh: 面向原生应用的 Bearer token 认证，支持刷新令牌轮换。
+    use_when:
+      en:
+        - Mobile or desktop clients need long-lived login with refresh rotation.
+      zh:
+        - 移动端或桌面客户端需要长期登录与刷新轮换。
+    avoid_when:
+      en:
+        - Browser session login; use migears/security instead.
+        - Simple static API keys with no refresh lifecycle.
+      zh:
+        - 浏览器会话登录；应改用 migears/security。
+        - 只需静态 API key，没有刷新生命周期。
+    requires: [security]
+
+  - id: template
+    package: migears/template
+    dir: migears-template
+    layer: view
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-template
+    readme: https://github.com/samxxu/migears-template#readme
+    summary:
+      en: Native PHP template engine with auto-escaping and layout inheritance.
+      zh: 原生 PHP 模板引擎，自带自动转义与布局继承。
+    use_when:
+      en:
+        - Any server-rendered HTML.
+        - You know PHP and want no new template language.
+      zh:
+        - 任何服务端渲染的 HTML。
+        - 你会 PHP，不想再学一门模板语言。
+    avoid_when:
+      en:
+        - You need declarative page definitions; use yaml-pages or xml-pages.
+        - API-only projects with no HTML output.
+      zh:
+        - 需要声明式页面定义；应改用 yaml-pages 或 xml-pages。
+        - 只输出 API、没有 HTML 的项目。
+    requires: []
+
+  - id: pages
+    package: migears/pages
+    dir: migears-pages
+    layer: view
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-pages
+    readme: https://github.com/samxxu/migears-pages#readme
+    summary:
+      en: Core declarative page DSL compiled to template files; the shared compiler behind yaml-pages and xml-pages.
+      zh: 声明式页面 DSL 的核心编译器，编译为模板文件；yaml-pages 与 xml-pages 的共享底座。
+    use_when:
+      en:
+        - You prefer the array DSL and want to define pages in PHP.
+        - You are building a parser or front-end package on top of the array DSL.
+      zh:
+        - 你偏好数组 DSL，想用 PHP 定义页面。
+        - 你要在数组 DSL 之上实现自己的解析器或前端包。
+    avoid_when:
+      en:
+        - You want a ready-made file format; yaml-pages and xml-pages provide one.
+      zh:
+        - 你希望使用现成的文件格式；yaml-pages 与 xml-pages 提供了这种格式。
+    requires: [template]
+    note:
+      en: All three page front-ends are valid. pages is the array DSL; yaml-pages and xml-pages are file formats. Pick by preference.
+      zh: 三种页面前端都可用。pages 是数组 DSL；yaml-pages 与 xml-pages 是文件格式。按喜好选择。
+
+  - id: yaml-pages
+    package: migears/yaml-pages
+    dir: migears-yaml-pages
+    layer: view
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-yaml-pages
+    readme: https://github.com/samxxu/migears-yaml-pages#readme
+    summary:
+      en: YAML page definitions compiled to miGears template files.
+      zh: 用 YAML 定义页面，编译为 miGears 模板文件。
+    use_when:
+      en:
+        - You prefer YAML for declarative pages.
+        - Many pages share the same list, form, or detail structure.
+      zh:
+        - 你偏好用 YAML 定义声明式页面。
+        - 许多页面共享相同的列表、表单或详情结构。
+    avoid_when:
+      en:
+        - You prefer XML; use xml-pages.
+        - You prefer plain PHP templates, even for a larger site; use template.
+      zh:
+        - 你偏好 XML；应改用 xml-pages。
+        - 即使页面较多，你仍偏好纯 PHP 模板；应使用 template。
+    requires: [pages]
+
+  - id: xml-pages
+    package: migears/xml-pages
+    dir: migears-xml-pages
+    layer: view
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-xml-pages
+    readme: https://github.com/samxxu/migears-xml-pages#readme
+    summary:
+      en: XML page definitions compiled to miGears template files.
+      zh: 用 XML 定义页面，编译为 miGears 模板文件。
+    use_when:
+      en:
+        - You prefer XML for declarative pages.
+        - You already have XML tooling or an XML team convention.
+      zh:
+        - 你偏好用 XML 定义声明式页面。
+        - 已有 XML 工具链或团队的 XML 约定。
+    avoid_when:
+      en:
+        - You prefer YAML; use yaml-pages.
+        - You prefer plain PHP templates; use template.
+      zh:
+        - 你偏好 YAML；应改用 yaml-pages。
+        - 你偏好纯 PHP 模板；应使用 template。
+    requires: [pages]
+
+  - id: html-digest
+    package: migears/html-digest
+    dir: migears-html-digest
+    layer: view
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-html-digest
+    readme: https://github.com/samxxu/migears-html-digest#readme
+    summary:
+      en: Extracts plain-text summaries, snippets, and word counts from HTML.
+      zh: 从 HTML 中提取纯文本摘要、片段与词数。
+    use_when:
+      en:
+        - Search snippets, previews, reading time, or word-count limits.
+      zh:
+        - 搜索摘要、预览、阅读时长或字数限制。
+    avoid_when:
+      en:
+        - Sanitizing untrusted HTML for output; use the Sanitizer in migears/security.
+      zh:
+        - 为输出净化不可信 HTML；应使用 migears/security 中的 Sanitizer。
+    requires: []
+
+  - id: domain
+    package: migears/domain
+    dir: migears-domain
+    layer: business
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-domain
+    readme: https://github.com/samxxu/migears-domain#readme
+    summary:
+      en: Pure data containers with self-validation and no mapping layer.
+      zh: 纯数据容器，自带校验，没有映射层。
+    use_when:
+      en:
+        - You want typed domain objects that validate themselves.
+      zh:
+        - 需要能自我校验的类型化领域对象。
+    avoid_when:
+      en:
+        - You need an ORM, identity map, or lazy relation graph.
+        - Plain arrays already express the data well.
+      zh:
+        - 需要 ORM、身份映射或懒加载关系图。
+        - 普通数组已经能清楚表达数据。
+    requires: [validator]
+
+  - id: manager
+    package: migears/manager
+    dir: migears-manager
+    layer: business
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-manager
+    readme: https://github.com/samxxu/migears-manager#readme
+    summary:
+      en: Business orchestration across domains, DAOs, and events.
+      zh: 跨领域对象、DAO 与事件的业务编排层。
+    use_when:
+      en:
+        - Multi-step use cases, transactions, or event dispatch.
+      zh:
+        - 多步骤用例、事务或事件分发。
+    avoid_when:
+      en:
+        - Thin CRUD that a resource plus a DAO already covers.
+      zh:
+        - 资源加 DAO 已经能覆盖的薄 CRUD。
+    requires: []
+
+  - id: validator
+    package: migears/validator
+    dir: migears-validator
+    layer: business
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-validator
+    readme: https://github.com/samxxu/migears-validator#readme
+    summary:
+      en: Declarative validation with stable error codes and i18n-ready messages.
+      zh: 声明式校验，稳定错误码，消息可直接国际化。
+    use_when:
+      en:
+        - Request or domain validation with stable error codes.
+      zh:
+        - 需要稳定错误码的请求或领域校验。
+    avoid_when:
+      en:
+        - You need a full form builder.
+        - One or two ad-hoc checks are simpler inline.
+      zh:
+        - 需要完整的表单构建器。
+        - 只有一两个临时检查，直接写在原处更简单。
+    requires: []
+
+  - id: security
+    package: migears/security
+    dir: migears-security
+    layer: business
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-security
+    readme: https://github.com/samxxu/migears-security#readme
+    summary:
+      en: Security toolkit with MiAuth sessions, CSRF, password hashing, remember-me, sanitizer, and tokens.
+      zh: 安全工具箱：MiAuth 会话、CSRF、密码哈希、记住我、净化器与令牌。
+    use_when:
+      en:
+        - Browser login and session-based applications.
+        - You need CSRF protection or HTML sanitizing.
+      zh:
+        - 浏览器登录与会话型应用。
+        - 需要 CSRF 防护或 HTML 净化。
+    avoid_when:
+      en:
+        - Token-only native backends; use security-token-auth.
+        - No authentication at all.
+      zh:
+        - 只服务原生应用的令牌后端；应改用 security-token-auth。
+        - 完全不需要认证。
+    requires: []
+
+  - id: sql
+    package: migears/sql
+    dir: migears-sql
+    layer: data
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-sql
+    readme: https://github.com/samxxu/migears-sql#readme
+    summary:
+      en: Lightweight SQL query builder with bound parameters.
+      zh: 轻量 SQL 查询构建器，使用绑定参数。
+    use_when:
+      en:
+        - You want composable SQL without an ORM.
+        - Complex joins and reporting queries.
+      zh:
+        - 想要可组合的 SQL，但不需要 ORM。
+        - 复杂连接与报表查询。
+    avoid_when:
+      en:
+        - You need an ORM, migrations, or multi-dialect abstraction.
+      zh:
+        - 需要 ORM、迁移工具或跨方言抽象。
+    requires: []
+
+  - id: dao
+    package: migears/dao
+    dir: migears-dao
+    layer: data
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-dao
+    readme: https://github.com/samxxu/migears-dao#readme
+    summary:
+      en: Single-table DAO trait linking SQL and domain objects, with cache invalidation.
+      zh: 单表 DAO trait，连接 SQL 与领域对象，并带缓存失效。
+    use_when:
+      en:
+        - One table maps to one domain object and you need CRUD plus pagination.
+      zh:
+        - 一张表对应一个领域对象，需要 CRUD 与分页。
+    avoid_when:
+      en:
+        - Complex joins, reporting queries, or multi-table aggregates; use sql directly.
+      zh:
+        - 复杂连接、报表查询或多表聚合；应直接使用 sql。
+    requires: [sql, domain, cache, utils]
+
+  - id: cache
+    package: migears/cache
+    dir: migears-cache
+    layer: data
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-cache
+    readme: https://github.com/samxxu/migears-cache#readme
+    summary:
+      en: PSR-16 cache with ArrayCache and RedisCache.
+      zh: 符合 PSR-16 的缓存，提供 ArrayCache 与 RedisCache。
+    use_when:
+      en:
+        - Read-through caching, counters, or short-lived shared state.
+      zh:
+        - 读穿缓存、计数器或短期共享状态。
+    avoid_when:
+      en:
+        - Durable data.
+        - You have no Redis and no need for caching yet.
+      zh:
+        - 需要持久化数据。
+        - 没有 Redis，也暂时不需要缓存。
+    requires: []
+
+  - id: data-structure
+    package: migears/data-structure
+    dir: migears-data-structure
+    layer: data
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-data-structure
+    readme: https://github.com/samxxu/migears-data-structure#readme
+    summary:
+      en: Explicit Redis Hash, List, Set, and ZSet semantics, plus locks.
+      zh: 明确的 Redis Hash、List、Set、ZSet 语义，另含锁。
+    use_when:
+      en:
+        - Queues, leaderboards, sets, counters, or distributed locks on Redis.
+      zh:
+        - Redis 上的队列、排行榜、集合、计数器或分布式锁。
+    avoid_when:
+      en:
+        - You only need key-value caching; use cache.
+        - You have no Redis.
+      zh:
+        - 只需要键值缓存；应使用 cache。
+        - 没有 Redis。
+    requires: []
+
+  - id: mitable
+    package: migears/mitable
+    dir: migears-mitable
+    layer: data
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-mitable
+    readme: https://github.com/samxxu/migears-mitable#readme
+    summary:
+      en: "Single-table execution helper for one-off migrations: DDL, CRUD, introspection, and cursor iteration."
+      zh: 面向一次性迁移的单表执行助手：DDL、CRUD、内省与游标迭代。
+    use_when:
+      en:
+        - Data import/export, one-off backfills, or schema introspection.
+      zh:
+        - 数据导入导出、一次性回填或表结构内省。
+    avoid_when:
+      en:
+        - Runtime application data access; use dao or sql.
+        - Multi-table migration suites.
+      zh:
+        - 应用运行时数据访问；应使用 dao 或 sql。
+        - 多表迁移套件。
+    requires: []
+
+  - id: utils
+    package: migears/utils
+    dir: migears-utils
+    layer: foundation
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-utils
+    readme: https://github.com/samxxu/migears-utils#readme
+    summary:
+      en: Immutable URL and pagination DTOs.
+      zh: 不可变 URL 与分页 DTO。
+    use_when:
+      en:
+        - Building or parsing URLs, or carrying pagination metadata.
+      zh:
+        - 构建或解析 URL，或传递分页元数据。
+    avoid_when:
+      en:
+        - You need a full HTTP message library.
+      zh:
+        - 需要完整的 HTTP 消息库。
+    requires: []
+
+  - id: wiring
+    package: migears/wiring
+    dir: migears-wiring
+    layer: foundation
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-wiring
+    readme: https://github.com/samxxu/migears-wiring#readme
+    summary:
+      en: Config-driven PSR-11 container wiring from a PHP array of factories.
+      zh: 用 PHP 工厂数组按配置装配 PSR-11 容器。
+    use_when:
+      en:
+        - Several entry points share one service configuration.
+      zh:
+        - 多个入口共享同一份服务配置。
+    avoid_when:
+      en:
+        - A single entry point can register services inline.
+      zh:
+        - 单个入口直接注册服务就足够了。
+    requires: []
+
+  - id: log
+    package: migears/log
+    dir: migears-log
+    layer: foundation
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-log
+    readme: https://github.com/samxxu/migears-log#readme
+    summary:
+      en: PSR-3 logger with file, stream, and custom handlers.
+      zh: 符合 PSR-3 的日志器，支持文件、流与自定义 handler。
+    use_when:
+      en:
+        - Any application that needs logs.
+      zh:
+        - 任何需要日志的应用。
+    avoid_when:
+      en:
+        - Library code; libraries should accept a PSR-3 logger and stay silent by default.
+      zh:
+        - 库代码；库应接受 PSR-3 logger 并默认静默。
+    requires: []
+
+  - id: debug
+    package: migears/debug
+    dir: migears-debug
+    layer: foundation
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-debug
+    readme: https://github.com/samxxu/migears-debug#readme
+    summary:
+      en: Developer-friendly exception and error page.
+      zh: 面向开发者的异常与错误页面。
+    use_when:
+      en:
+        - Local development and staging.
+      zh:
+        - 本地开发与预发布环境。
+    avoid_when:
+      en:
+        - Production; never expose detailed errors.
+      zh:
+        - 生产环境；绝不要暴露详细错误。
+    requires: []
+
+  - id: http-exceptions
+    package: migears/http-exceptions
+    dir: migears-http-exceptions
+    layer: foundation
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-http-exceptions
+    readme: https://github.com/samxxu/migears-http-exceptions#readme
+    summary:
+      en: Minimal HTTP exception classes for 4xx and 5xx responses.
+      zh: 极简 HTTP 异常类，覆盖 4xx 与 5xx。
+    use_when:
+      en:
+        - Services throw HTTP-aware exceptions that the web layer maps to responses.
+      zh:
+        - 服务层抛出带 HTTP 语义的异常，由 Web 层映射为响应。
+    avoid_when:
+      en:
+        - You only need a single 404 helper.
+      zh:
+        - 只需要一个 404 辅助方法。
+    requires: []
+
+  - id: i18n
+    package: migears/i18n
+    dir: migears-i18n
+    layer: foundation
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-i18n
+    readme: https://github.com/samxxu/migears-i18n#readme
+    summary:
+      en: Array and gettext translations plus timezone-aware date rendering.
+      zh: 数组与 gettext 翻译，外加时区感知的日期渲染。
+    use_when:
+      en:
+        - Multi-language UI or localized date formatting.
+      zh:
+        - 多语言界面或本地化日期格式。
+    avoid_when:
+      en:
+        - Single-language projects.
+      zh:
+        - 单语言项目。
+    requires: []
+
+  - id: jobs
+    package: migears/jobs
+    dir: migears-jobs
+    layer: integration
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-jobs
+    readme: https://github.com/samxxu/migears-jobs#readme
+    summary:
+      en: Fire-and-forget background processes.
+      zh: 发射后不管的后台进程。
+    use_when:
+      en:
+        - Emails, thumbnails, or exports that can run after the response.
+      zh:
+        - 可以在响应之后执行的邮件、缩略图或导出。
+    avoid_when:
+      en:
+        - You need retries, scheduling, or at-least-once delivery.
+      zh:
+        - 需要重试、调度或至少一次投递保证。
+    requires: []
+
+  - id: mail
+    package: migears/mail
+    dir: migears-mail
+    layer: integration
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-mail
+    readme: https://github.com/samxxu/migears-mail#readme
+    summary:
+      en: Mail sending through native mail() and SMTP, with attachments and HTML/text bodies.
+      zh: 通过原生 mail() 与 SMTP 发信，支持附件与 HTML/纯文本正文。
+    use_when:
+      en:
+        - Transactional email from your own infrastructure.
+      zh:
+        - 从自有基础设施发送事务性邮件。
+    avoid_when:
+      en:
+        - High-volume marketing email.
+        - You need a provider SDK or delivery analytics.
+      zh:
+        - 大批量营销邮件。
+        - 需要服务商 SDK 或送达分析。
+    requires: []
+
+  - id: rpc
+    package: migears/rpc
+    dir: migears-rpc
+    layer: integration
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-rpc
+    readme: https://github.com/samxxu/migears-rpc#readme
+    summary:
+      en: JSON-RPC 2.0 client and server.
+      zh: JSON-RPC 2.0 客户端与服务端。
+    use_when:
+      en:
+        - Internal service-to-service JSON-RPC.
+      zh:
+        - 内部服务之间的 JSON-RPC。
+    avoid_when:
+      en:
+        - REST or general HTTP APIs; use web.
+        - Streaming transports.
+      zh:
+        - REST 或通用 HTTP API；应使用 web。
+        - 流式传输。
+    requires: []
+
+  - id: ai-proxy
+    package: migears/ai-proxy
+    dir: migears-ai-proxy
+    layer: integration
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-ai-proxy
+    readme: https://github.com/samxxu/migears-ai-proxy#readme
+    summary:
+      en: SSE relay plus an OpenAI-compatible model abstraction.
+      zh: SSE 中继与 OpenAI 兼容的模型抽象。
+    use_when:
+      en:
+        - Streaming AI responses through your backend.
+      zh:
+        - 通过自己的后端流式转发 AI 响应。
+    avoid_when:
+      en:
+        - Non-streaming batch jobs.
+        - The browser can call the provider directly and no server-side key is needed.
+      zh:
+        - 非流式批处理任务。
+        - 浏览器可以直接调用服务商，且不需要在服务端保管密钥。
+    requires: []
+
+  - id: image
+    package: migears/image
+    dir: migears-image
+    layer: integration
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-image
+    readme: https://github.com/samxxu/migears-image#readme
+    summary:
+      en: GD-based resize, crop, watermark, and format conversion.
+      zh: 基于 GD 的缩放、裁剪、水印与格式转换。
+    use_when:
+      en:
+        - Upload thumbnails or watermarked derivatives.
+      zh:
+        - 上传缩略图或带水印的派生图。
+    avoid_when:
+      en:
+        - Advanced filters, color profiles, or non-GD pipelines.
+      zh:
+        - 高级滤镜、色彩配置或非 GD 处理管线。
+    requires: []
+
+  - id: captcha
+    package: migears/captcha
+    dir: migears-captcha
+    layer: integration
+    published: "2.0.0"
+    repo: https://github.com/samxxu/migears-captcha
+    readme: https://github.com/samxxu/migears-captcha#readme
+    summary:
+      en: GD captcha generator and verifier.
+      zh: 基于 GD 的验证码生成与校验。
+    use_when:
+      en:
+        - Simple bot protection on public forms.
+      zh:
+        - 公开表单上的基础机器人防护。
+    avoid_when:
+      en:
+        - You need enterprise bot detection or accessibility-first alternatives.
+      zh:
+        - 需要企业级机器人检测或以无障碍为先的替代方案。
+    requires: []

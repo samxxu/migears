@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-en="miGears — ready-made stacks" data-title-zh="miGears — 预制组合">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Four miGears stacks with composer commands and removal advice.">
+    <title>miGears — ready-made stacks</title>
+    <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="wrap header-inner">
+        <a class="brand" href="index.html"><span class="brand-mark">mi</span>Gears</a>
+        <nav class="site-nav" aria-label="Main">
+                            <a href="index.html"><span class="lang-en">Overview</span><span class="lang-zh">概览</span></a>
+                            <a href="modules.html"><span class="lang-en">Modules</span><span class="lang-zh">模块</span></a>
+                            <a href="choose.html"><span class="lang-en">Choose</span><span class="lang-zh">选型</span></a>
+                            <a href="stacks.html" class="active" aria-current="page"><span class="lang-en">Stacks</span><span class="lang-zh">组合</span></a>
+                    </nav>
+        <button class="lang-toggle" type="button" aria-label="Switch language">中文</button>
+    </div>
+</header>
+
+<main>
+    <section class="page-head">
+    <div class="wrap">
+        <p class="eyebrow"><span class="lang-en">Ready-made stacks</span><span class="lang-zh">预制组合</span></p>
+        <h1><span class="lang-en">Start from a stack</span><span class="lang-zh">从一套组合开始</span></h1>
+        <p class="lede">
+            <span class="lang-en">Each stack is a composer command, a module list, and a list of things you can remove. Nothing here is mandatory forever.</span>
+            <span class="lang-zh">每套组合包含一条 composer 命令、一份模块清单，以及一份可以去掉的清单。没有什么是必须长期保留的。</span>
+        </p>
+    </div>
+</section>
+
+<section class="section section-tight">
+    <div class="wrap">
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th><span class="lang-en">Stack</span><span class="lang-zh">组合</span></th>
+                    <th><span class="lang-en">Best for</span><span class="lang-zh">适用</span></th>
+                    <th><span class="lang-en">Direct packages</span><span class="lang-zh">直接依赖</span></th>
+                    <th><span class="lang-en">Starter</span><span class="lang-zh">骨架</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                                    <tr>
+                        <td><a href="#minimal-site"><span class="lang-en">Minimal site</span><span class="lang-zh">小站 / 原型</span></a></td>
+                        <td><span class="lang-en">Plain PHP templates, no database.</span><span class="lang-zh">纯 PHP 模板，没有数据库。</span></td>
+                        <td>5</td>
+                        <td><span class="lang-en">Yes</span><span class="lang-zh">有</span></td>
+                    </tr>
+                                    <tr>
+                        <td><a href="#content-site"><span class="lang-en">Content site</span><span class="lang-zh">内容站 / 后台</span></a></td>
+                        <td><span class="lang-en">Repetitive pages and forms, with a page front-end of your choice.</span><span class="lang-zh">页面与表单重复，页面前端按喜好自选。</span></td>
+                        <td>7</td>
+                        <td><span class="lang-en">—</span><span class="lang-zh">—</span></td>
+                    </tr>
+                                    <tr>
+                        <td><a href="#rest-api"><span class="lang-en">REST API</span><span class="lang-zh">REST API</span></a></td>
+                        <td><span class="lang-en">JSON in, JSON out. No HTML.</span><span class="lang-zh">只输出 JSON，不渲染 HTML。</span></td>
+                        <td>6</td>
+                        <td><span class="lang-en">—</span><span class="lang-zh">—</span></td>
+                    </tr>
+                                    <tr>
+                        <td><a href="#mobile-api"><span class="lang-en">Mobile API</span><span class="lang-zh">移动端 / 开放 API</span></a></td>
+                        <td><span class="lang-en">REST API plus native-client login with refresh rotation.</span><span class="lang-zh">REST API 加原生客户端登录与刷新轮换。</span></td>
+                        <td>7</td>
+                        <td><span class="lang-en">—</span><span class="lang-zh">—</span></td>
+                    </tr>
+                                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+    <section class="section stack-section" id="minimal-site">
+        <div class="wrap">
+            <div class="stack-head">
+                <div>
+                    <h2><span class="lang-en">Minimal site</span><span class="lang-zh">小站 / 原型</span></h2>
+                    <p class="stack-tagline"><span class="lang-en">Plain PHP templates, no database.</span><span class="lang-zh">纯 PHP 模板，没有数据库。</span></p>
+                </div>
+                <div class="stack-badges">
+                    <span class="badge badge-neutral">5 <span class="lang-en">direct</span><span class="lang-zh">直接依赖</span></span>
+                                            <a class="badge badge-ok" href="https://github.com/samxxu/migears-entry/tree/main/starters/minimal-site">
+                            <span class="lang-en">Runnable starter</span><span class="lang-zh">可运行骨架</span>
+                        </a>
+                                    </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy" type="button" data-copy>Copy</button>
+                <pre><code>composer require migears/web migears/template migears/log migears/debug migears/http-exceptions</code></pre>
+            </div>
+
+            <div class="pill-groups">
+                <div>
+                    <p class="pill-label"><span class="lang-en">Install directly</span><span class="lang-zh">直接安装</span></p>
+                    <div class="pill-row">
+                                                    <a class="pill pill-direct" href="modules.html#web"><span class="pill-name">migears/web</span></a>                                                    <a class="pill pill-direct" href="modules.html#template"><span class="pill-name">migears/template</span></a>                                                    <a class="pill pill-direct" href="modules.html#log"><span class="pill-name">migears/log</span></a>                                                    <a class="pill pill-direct" href="modules.html#debug"><span class="pill-name">migears/debug</span></a>                                                    <a class="pill pill-direct" href="modules.html#http-exceptions"><span class="pill-name">migears/http-exceptions</span></a>                                            </div>
+                </div>
+                                                    <div>
+                        <p class="pill-label"><span class="lang-en">Add only when needed</span><span class="lang-zh">按需添加</span></p>
+                        <div class="pill-row">
+                                                            <a class="pill pill-optional" href="modules.html#captcha"><span class="pill-name">migears/captcha</span></a>                                                            <a class="pill pill-optional" href="modules.html#mail"><span class="pill-name">migears/mail</span></a>                                                    </div>
+                    </div>
+                            </div>
+
+            
+            <div class="stack-grid">
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h3>
+                    <ul class="bi-list lang-en"><li>You need server-rendered pages and prefer plain PHP templates.</li><li>You have no data layer yet.</li></ul><ul class="bi-list lang-zh"><li>需要服务端渲染页面，并偏好纯 PHP 模板。</li><li>暂时没有数据层。</li></ul>                </div>
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h3>
+                    <ul class="bi-list lang-en"><li>Page structure is highly repetitive or edited by non-PHP users; use content-site.</li><li>You need an API only; use rest-api.</li></ul><ul class="bi-list lang-zh"><li>页面结构高度重复或由非 PHP 人员维护；改用 content-site。</li><li>只需要 API；改用 rest-api。</li></ul>                </div>
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Remove if</span><span class="lang-zh">可以去掉</span></h3>
+                    <ul class="bi-list lang-en"><li>debug in production.</li><li>log if you truly need no logging; register a NullLogger instead.</li></ul><ul class="bi-list lang-zh"><li>生产环境去掉 debug。</li><li>完全不需要日志时去掉 log，改为注册 NullLogger。</li></ul>                </div>
+            </div>
+
+                            <div class="stack-notes">
+                    <h3><span class="lang-en">Notes</span><span class="lang-zh">备注</span></h3>
+                    <ul class="bi-list lang-en"><li>The starter runs against the current 2.3 tree. The public repositories may lag until the current test round is released.</li></ul><ul class="bi-list lang-zh"><li>starter 运行在当前 2.3 代码树上。当前测试轮发布前，公开仓库可能滞后。</li></ul>                </div>
+                    </div>
+    </section>
+    <section class="section stack-section" id="content-site">
+        <div class="wrap">
+            <div class="stack-head">
+                <div>
+                    <h2><span class="lang-en">Content site</span><span class="lang-zh">内容站 / 后台</span></h2>
+                    <p class="stack-tagline"><span class="lang-en">Repetitive pages and forms, with a page front-end of your choice.</span><span class="lang-zh">页面与表单重复，页面前端按喜好自选。</span></p>
+                </div>
+                <div class="stack-badges">
+                    <span class="badge badge-neutral">7 <span class="lang-en">direct</span><span class="lang-zh">直接依赖</span></span>
+                                    </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy" type="button" data-copy>Copy</button>
+                <pre><code>composer require migears/web migears/yaml-pages migears/validator migears/security migears/log migears/debug migears/http-exceptions</code></pre>
+            </div>
+
+            <div class="pill-groups">
+                <div>
+                    <p class="pill-label"><span class="lang-en">Install directly</span><span class="lang-zh">直接安装</span></p>
+                    <div class="pill-row">
+                                                    <a class="pill pill-direct" href="modules.html#web"><span class="pill-name">migears/web</span></a>                                                    <a class="pill pill-direct" href="modules.html#yaml-pages"><span class="pill-name">migears/yaml-pages</span></a>                                                    <a class="pill pill-direct" href="modules.html#validator"><span class="pill-name">migears/validator</span></a>                                                    <a class="pill pill-direct" href="modules.html#security"><span class="pill-name">migears/security</span></a>                                                    <a class="pill pill-direct" href="modules.html#log"><span class="pill-name">migears/log</span></a>                                                    <a class="pill pill-direct" href="modules.html#debug"><span class="pill-name">migears/debug</span></a>                                                    <a class="pill pill-direct" href="modules.html#http-exceptions"><span class="pill-name">migears/http-exceptions</span></a>                                            </div>
+                </div>
+                                    <div>
+                        <p class="pill-label"><span class="lang-en">Pulled in automatically</span><span class="lang-zh">自动带入</span></p>
+                        <div class="pill-row">
+                                                            <a class="pill pill-pulled" href="modules.html#pages"><span class="pill-name">migears/pages</span></a>                                                            <a class="pill pill-pulled" href="modules.html#template"><span class="pill-name">migears/template</span></a>                                                    </div>
+                    </div>
+                                                    <div>
+                        <p class="pill-label"><span class="lang-en">Add only when needed</span><span class="lang-zh">按需添加</span></p>
+                        <div class="pill-row">
+                                                            <a class="pill pill-optional" href="modules.html#i18n"><span class="pill-name">migears/i18n</span></a>                                                            <a class="pill pill-optional" href="modules.html#html-digest"><span class="pill-name">migears/html-digest</span></a>                                                            <a class="pill pill-optional" href="modules.html#captcha"><span class="pill-name">migears/captcha</span></a>                                                            <a class="pill pill-optional" href="modules.html#mail"><span class="pill-name">migears/mail</span></a>                                                            <a class="pill pill-optional" href="modules.html#image"><span class="pill-name">migears/image</span></a>                                                            <a class="pill pill-optional" href="modules.html#web-guards"><span class="pill-name">migears/web-guards</span><span class="pill-note"><span class="lang-en">pending</span><span class="lang-zh">待发布</span></span></a>                                                            <a class="pill pill-optional" href="modules.html#acl-feature"><span class="pill-name">migears/acl-feature</span><span class="pill-note"><span class="lang-en">pending</span><span class="lang-zh">待发布</span></span></a>                                                    </div>
+                    </div>
+                            </div>
+
+                            <div class="stack-choice">
+                    <p class="pill-label"><span class="lang-en">Page front-end</span><span class="lang-zh">页面前端</span></p>
+                    <div class="pill-row">
+                                                    <a class="pill pill-choice" href="modules.html#yaml-pages"><span class="pill-name">migears/yaml-pages</span></a>                                                    <a class="pill pill-choice" href="modules.html#xml-pages"><span class="pill-name">migears/xml-pages</span></a>                                                    <a class="pill pill-choice" href="modules.html#pages"><span class="pill-name">migears/pages</span></a>                                            </div>
+                    <p class="map-note"><span class="lang-en">Pick one by preference. The module list and composer command use yaml-pages as the example; swap it for xml-pages or pages.</span><span class="lang-zh">按喜好任选其一。模块清单与 composer 命令以 yaml-pages 为例；可替换为 xml-pages 或 pages。</span></p>
+                </div>
+            
+            <div class="stack-grid">
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h3>
+                    <ul class="bi-list lang-en"><li>Lists, forms, and detail pages repeat across the application.</li><li>You want declarative page definitions instead of writing every template by hand.</li></ul><ul class="bi-list lang-zh"><li>列表、表单与详情页在应用里反复出现。</li><li>希望使用声明式页面定义，而不是手写每一个模板。</li></ul>                </div>
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h3>
+                    <ul class="bi-list lang-en"><li>You prefer plain PHP templates, even for a larger site; use minimal-site.</li><li>You only need JSON; use rest-api.</li></ul><ul class="bi-list lang-zh"><li>即使页面较多，你仍偏好纯 PHP 模板；改用 minimal-site。</li><li>只需要 JSON；改用 rest-api。</li></ul>                </div>
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Remove if</span><span class="lang-zh">可以去掉</span></h3>
+                    <ul class="bi-list lang-en"><li>security when there is no login or CSRF surface.</li><li>validator when every form is trivial.</li></ul><ul class="bi-list lang-zh"><li>没有登录或 CSRF 面时去掉 security。</li><li>所有表单都很简单时去掉 validator。</li></ul>                </div>
+            </div>
+
+                            <div class="stack-notes">
+                    <h3><span class="lang-en">Notes</span><span class="lang-zh">备注</span></h3>
+                    <ul class="bi-list lang-en"><li>yaml-pages and xml-pages pull in pages; pages pulls in template.</li><li>Pick the page front-end by preference: pages (array DSL), yaml-pages, or xml-pages.</li><li>Add i18n only when there is a second language.</li></ul><ul class="bi-list lang-zh"><li>yaml-pages 与 xml-pages 会带入 pages；pages 会带入 template。</li><li>页面前端按喜好选择：pages（数组 DSL）、yaml-pages 或 xml-pages。</li><li>只有存在第二语言时才添加 i18n。</li></ul>                </div>
+                    </div>
+    </section>
+    <section class="section stack-section" id="rest-api">
+        <div class="wrap">
+            <div class="stack-head">
+                <div>
+                    <h2><span class="lang-en">REST API</span><span class="lang-zh">REST API</span></h2>
+                    <p class="stack-tagline"><span class="lang-en">JSON in, JSON out. No HTML.</span><span class="lang-zh">只输出 JSON，不渲染 HTML。</span></p>
+                </div>
+                <div class="stack-badges">
+                    <span class="badge badge-neutral">6 <span class="lang-en">direct</span><span class="lang-zh">直接依赖</span></span>
+                                    </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy" type="button" data-copy>Copy</button>
+                <pre><code>composer require migears/web migears/log migears/http-exceptions migears/validator migears/dao migears/debug</code></pre>
+            </div>
+
+            <div class="pill-groups">
+                <div>
+                    <p class="pill-label"><span class="lang-en">Install directly</span><span class="lang-zh">直接安装</span></p>
+                    <div class="pill-row">
+                                                    <a class="pill pill-direct" href="modules.html#web"><span class="pill-name">migears/web</span></a>                                                    <a class="pill pill-direct" href="modules.html#log"><span class="pill-name">migears/log</span></a>                                                    <a class="pill pill-direct" href="modules.html#http-exceptions"><span class="pill-name">migears/http-exceptions</span></a>                                                    <a class="pill pill-direct" href="modules.html#validator"><span class="pill-name">migears/validator</span></a>                                                    <a class="pill pill-direct" href="modules.html#dao"><span class="pill-name">migears/dao</span></a>                                                    <a class="pill pill-direct" href="modules.html#debug"><span class="pill-name">migears/debug</span></a>                                            </div>
+                </div>
+                                    <div>
+                        <p class="pill-label"><span class="lang-en">Pulled in automatically</span><span class="lang-zh">自动带入</span></p>
+                        <div class="pill-row">
+                                                            <a class="pill pill-pulled" href="modules.html#sql"><span class="pill-name">migears/sql</span></a>                                                            <a class="pill pill-pulled" href="modules.html#domain"><span class="pill-name">migears/domain</span></a>                                                            <a class="pill pill-pulled" href="modules.html#cache"><span class="pill-name">migears/cache</span></a>                                                            <a class="pill pill-pulled" href="modules.html#utils"><span class="pill-name">migears/utils</span></a>                                                    </div>
+                    </div>
+                                                    <div>
+                        <p class="pill-label"><span class="lang-en">Add only when needed</span><span class="lang-zh">按需添加</span></p>
+                        <div class="pill-row">
+                                                            <a class="pill pill-optional" href="modules.html#manager"><span class="pill-name">migears/manager</span></a>                                                            <a class="pill pill-optional" href="modules.html#wiring"><span class="pill-name">migears/wiring</span></a>                                                            <a class="pill pill-optional" href="modules.html#jobs"><span class="pill-name">migears/jobs</span></a>                                                            <a class="pill pill-optional" href="modules.html#mail"><span class="pill-name">migears/mail</span></a>                                                            <a class="pill pill-optional" href="modules.html#rpc"><span class="pill-name">migears/rpc</span></a>                                                            <a class="pill pill-optional" href="modules.html#ai-proxy"><span class="pill-name">migears/ai-proxy</span></a>                                                            <a class="pill pill-optional" href="modules.html#data-structure"><span class="pill-name">migears/data-structure</span></a>                                                            <a class="pill pill-optional" href="modules.html#mitable"><span class="pill-name">migears/mitable</span></a>                                                    </div>
+                    </div>
+                            </div>
+
+            
+            <div class="stack-grid">
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h3>
+                    <ul class="bi-list lang-en"><li>The backend serves JSON only.</li><li>One table maps to one domain object for most endpoints.</li></ul><ul class="bi-list lang-zh"><li>后端只提供 JSON。</li><li>大多数端点是一张表对应一个领域对象。</li></ul>                </div>
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h3>
+                    <ul class="bi-list lang-en"><li>You need server-rendered pages; use minimal-site or content-site.</li><li>You need an ORM with identity mapping and lazy relations.</li></ul><ul class="bi-list lang-zh"><li>需要服务端渲染页面；改用 minimal-site 或 content-site。</li><li>需要带身份映射与懒加载关系的 ORM。</li></ul>                </div>
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Remove if</span><span class="lang-zh">可以去掉</span></h3>
+                    <ul class="bi-list lang-en"><li>cache when nothing is actually cached; dao still pulls it in, but you can ignore it.</li><li>debug in production.</li></ul><ul class="bi-list lang-zh"><li>没有实际缓存时可以不关心 cache；dao 仍会带入它。</li><li>生产环境去掉 debug。</li></ul>                </div>
+            </div>
+
+                            <div class="stack-notes">
+                    <h3><span class="lang-en">Notes</span><span class="lang-zh">备注</span></h3>
+                    <ul class="bi-list lang-en"><li>dao pulls in sql, domain, cache, and utils.</li><li>Add manager only for multi-step use cases or events.</li><li>Use sql directly for joins and reports.</li></ul><ul class="bi-list lang-zh"><li>dao 会带入 sql、domain、cache 与 utils。</li><li>只有多步骤用例或事件时才添加 manager。</li><li>连接与报表直接使用 sql。</li></ul>                </div>
+                    </div>
+    </section>
+    <section class="section stack-section" id="mobile-api">
+        <div class="wrap">
+            <div class="stack-head">
+                <div>
+                    <h2><span class="lang-en">Mobile API</span><span class="lang-zh">移动端 / 开放 API</span></h2>
+                    <p class="stack-tagline"><span class="lang-en">REST API plus native-client login with refresh rotation.</span><span class="lang-zh">REST API 加原生客户端登录与刷新轮换。</span></p>
+                </div>
+                <div class="stack-badges">
+                    <span class="badge badge-neutral">7 <span class="lang-en">direct</span><span class="lang-zh">直接依赖</span></span>
+                                    </div>
+            </div>
+
+            <div class="code-block">
+                <button class="copy" type="button" data-copy>Copy</button>
+                <pre><code>composer require migears/web migears/log migears/http-exceptions migears/validator migears/dao migears/security-token-auth migears/debug</code></pre>
+            </div>
+
+            <div class="pill-groups">
+                <div>
+                    <p class="pill-label"><span class="lang-en">Install directly</span><span class="lang-zh">直接安装</span></p>
+                    <div class="pill-row">
+                                                    <a class="pill pill-direct" href="modules.html#web"><span class="pill-name">migears/web</span></a>                                                    <a class="pill pill-direct" href="modules.html#log"><span class="pill-name">migears/log</span></a>                                                    <a class="pill pill-direct" href="modules.html#http-exceptions"><span class="pill-name">migears/http-exceptions</span></a>                                                    <a class="pill pill-direct" href="modules.html#validator"><span class="pill-name">migears/validator</span></a>                                                    <a class="pill pill-direct" href="modules.html#dao"><span class="pill-name">migears/dao</span></a>                                                    <a class="pill pill-direct" href="modules.html#security-token-auth"><span class="pill-name">migears/security-token-auth</span></a>                                                    <a class="pill pill-direct" href="modules.html#debug"><span class="pill-name">migears/debug</span></a>                                            </div>
+                </div>
+                                    <div>
+                        <p class="pill-label"><span class="lang-en">Pulled in automatically</span><span class="lang-zh">自动带入</span></p>
+                        <div class="pill-row">
+                                                            <a class="pill pill-pulled" href="modules.html#sql"><span class="pill-name">migears/sql</span></a>                                                            <a class="pill pill-pulled" href="modules.html#domain"><span class="pill-name">migears/domain</span></a>                                                            <a class="pill pill-pulled" href="modules.html#cache"><span class="pill-name">migears/cache</span></a>                                                            <a class="pill pill-pulled" href="modules.html#utils"><span class="pill-name">migears/utils</span></a>                                                            <a class="pill pill-pulled" href="modules.html#security"><span class="pill-name">migears/security</span></a>                                                    </div>
+                    </div>
+                                                    <div>
+                        <p class="pill-label"><span class="lang-en">Add only when needed</span><span class="lang-zh">按需添加</span></p>
+                        <div class="pill-row">
+                                                            <a class="pill pill-optional" href="modules.html#acl-feature"><span class="pill-name">migears/acl-feature</span><span class="pill-note"><span class="lang-en">pending</span><span class="lang-zh">待发布</span></span></a>                                                            <a class="pill pill-optional" href="modules.html#web-guards"><span class="pill-name">migears/web-guards</span><span class="pill-note"><span class="lang-en">pending</span><span class="lang-zh">待发布</span></span></a>                                                            <a class="pill pill-optional" href="modules.html#rpc"><span class="pill-name">migears/rpc</span></a>                                                            <a class="pill pill-optional" href="modules.html#jobs"><span class="pill-name">migears/jobs</span></a>                                                            <a class="pill pill-optional" href="modules.html#mail"><span class="pill-name">migears/mail</span></a>                                                            <a class="pill pill-optional" href="modules.html#ai-proxy"><span class="pill-name">migears/ai-proxy</span></a>                                                    </div>
+                    </div>
+                            </div>
+
+            
+            <div class="stack-grid">
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Use when</span><span class="lang-zh">适用</span></h3>
+                    <ul class="bi-list lang-en"><li>Native mobile or desktop clients need long-lived login.</li><li>You want bearer tokens with rotating refresh tokens.</li></ul><ul class="bi-list lang-zh"><li>原生移动端或桌面客户端需要长期登录。</li><li>需要 Bearer token 与刷新令牌轮换。</li></ul>                </div>
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Avoid when</span><span class="lang-zh">不适用</span></h3>
+                    <ul class="bi-list lang-en"><li>Browser session login; use content-site with migears/security.</li><li>Simple static API keys with no refresh lifecycle.</li></ul><ul class="bi-list lang-zh"><li>浏览器会话登录；改用 content-site 搭配 migears/security。</li><li>只需静态 API key，没有刷新生命周期。</li></ul>                </div>
+                <div class="card stack-list">
+                    <h3><span class="lang-en">Remove if</span><span class="lang-zh">可以去掉</span></h3>
+                    <ul class="bi-list lang-en"><li>security-token-auth for public read-only endpoints.</li><li>debug in production.</li></ul><ul class="bi-list lang-zh"><li>公开只读端点可以去掉 security-token-auth。</li><li>生产环境去掉 debug。</li></ul>                </div>
+            </div>
+
+                            <div class="stack-notes">
+                    <h3><span class="lang-en">Notes</span><span class="lang-zh">备注</span></h3>
+                    <ul class="bi-list lang-en"><li>acl-feature and web-guards are optional access layers; add them only when a static endpoint matrix or cross-cutting guards are needed.</li><li>rpc only when clients actually speak JSON-RPC.</li></ul><ul class="bi-list lang-zh"><li>acl-feature 与 web-guards 是可选访问层；只有需要静态端点矩阵或统一守卫时才添加。</li><li>只有客户端确实使用 JSON-RPC 时才添加 rpc。</li></ul>                </div>
+                    </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="wrap footer-inner">
+        <p>
+            <span class="lang-en">miGears is pre-release. Each module README is the authoritative source.</span>
+            <span class="lang-zh">miGears 处于 pre-release。各模块 README 是权威来源。</span>
+        </p>
+        <p class="footer-links">
+            <a href="https://github.com/samxxu/migears-entry">GitHub</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/AGENTS.md">AGENTS.md</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/llms.txt">llms.txt</a>
+            <span aria-hidden="true">·</span>
+            <a href="https://github.com/samxxu/migears-entry/blob/main/modules.yaml">modules.yaml</a>
+        </p>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

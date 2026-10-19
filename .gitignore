@@ -1,0 +1,4 @@
+.DS_Store
+vendor/
+starters/*/vendor/
+starters/*/var/log/*.log

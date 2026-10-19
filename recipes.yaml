@@ -1,0 +1,212 @@
+schema: 1
+project: miGears
+version: "2.3.0"
+
+selection_order:
+  en:
+    - Does the project serve HTML? If no, start from rest-api; switch to mobile-api when native clients need login.
+    - If yes, are pages structurally repetitive, or edited by non-PHP maintainers? If no, use minimal-site; if yes, use content-site.
+    - If you use declarative pages, pick pages, yaml-pages, or xml-pages by preference.
+    - Add a cross-cutting module only when its use_when matches the task.
+    - Check avoid_when before adding anything.
+  zh:
+    - 项目是否输出 HTML？如果否，从 rest-api 起步；原生客户端需要登录时改用 mobile-api。
+    - 如果输出 HTML，页面结构是否高度重复，或由非 PHP 人员维护？否，用 minimal-site；是，用 content-site。
+    - 如果使用声明式页面，按喜好选择 pages、yaml-pages 或 xml-pages。
+    - 只有当横切模块的 use_when 命中时才添加它。
+    - 添加任何模块前先检查 avoid_when。
+
+hard_rules:
+  - id: no-all-in
+    en: Never install all 30 modules. Start from a recipe and add only when use_when matches.
+    zh: 绝不安装全部 30 个模块。从组合起步，只在 use_when 命中时添加。
+  - id: page-frontends
+    en: All three page front-ends are valid. pages is the array DSL; yaml-pages and xml-pages are file formats. Pick by preference, not by project size.
+    zh: 三种页面前端都可用。pages 是数组 DSL；yaml-pages 与 xml-pages 是文件格式。按喜好选择，而不是按项目大小。
+  - id: debug-not-prod
+    en: Never enable migears/debug in production.
+    zh: 绝不要在生产环境启用 migears/debug。
+  - id: jobs-durability
+    en: migears/jobs is fire-and-forget. If the task needs retries, scheduling, or at-least-once delivery, choose a real queue.
+    zh: migears/jobs 是发射后不管。任务需要重试、调度或至少一次投递时，应选择真正的队列。
+  - id: dao-single-table
+    en: migears/dao is single-table. Use migears/sql directly for joins, reports, and multi-table aggregates.
+    zh: migears/dao 面向单表。连接、报表与多表聚合应直接使用 migears/sql。
+
+recipes:
+  - id: minimal-site
+    name:
+      en: Minimal site
+      zh: 小站 / 原型
+    tagline:
+      en: Plain PHP templates, no database.
+      zh: 纯 PHP 模板，没有数据库。
+    starter: starters/minimal-site
+    modules: [web, template, log, debug, http-exceptions]
+    pulled_in: []
+    optional_modules: [captcha, mail]
+    packages: [migears/web, migears/template, migears/log, migears/debug, migears/http-exceptions]
+    composer: composer require migears/web migears/template migears/log migears/debug migears/http-exceptions
+    use_when:
+      en:
+        - You need server-rendered pages and prefer plain PHP templates.
+        - You have no data layer yet.
+      zh:
+        - 需要服务端渲染页面，并偏好纯 PHP 模板。
+        - 暂时没有数据层。
+    avoid_when:
+      en:
+        - Page structure is highly repetitive or edited by non-PHP users; use content-site.
+        - You need an API only; use rest-api.
+      zh:
+        - 页面结构高度重复或由非 PHP 人员维护；改用 content-site。
+        - 只需要 API；改用 rest-api。
+    remove_if:
+      en:
+        - debug in production.
+        - log if you truly need no logging; register a NullLogger instead.
+      zh:
+        - 生产环境去掉 debug。
+        - 完全不需要日志时去掉 log，改为注册 NullLogger。
+    notes:
+      en:
+        - The starter runs against the current 2.3 tree. The public repositories may lag until the current test round is released.
+      zh:
+        - starter 运行在当前 2.3 代码树上。当前测试轮发布前，公开仓库可能滞后。
+
+  - id: content-site
+    name:
+      en: Content site
+      zh: 内容站 / 后台
+    tagline:
+      en: Repetitive pages and forms, with a page front-end of your choice.
+      zh: 页面与表单重复，页面前端按喜好自选。
+    starter: null
+    modules: [web, yaml-pages, validator, security, log, debug, http-exceptions]
+    pulled_in: [pages, template]
+    page_frontends:
+      label: {en: Page front-end, zh: 页面前端}
+      options: [yaml-pages, xml-pages, pages]
+      default: yaml-pages
+      note:
+        en: Pick one by preference. The module list and composer command use yaml-pages as the example; swap it for xml-pages or pages.
+        zh: 按喜好任选其一。模块清单与 composer 命令以 yaml-pages 为例；可替换为 xml-pages 或 pages。
+    optional_modules: [i18n, html-digest, captcha, mail, image, web-guards, acl-feature]
+    packages: [migears/web, migears/yaml-pages, migears/validator, migears/security, migears/log, migears/debug, migears/http-exceptions]
+    composer: composer require migears/web migears/yaml-pages migears/validator migears/security migears/log migears/debug migears/http-exceptions
+    use_when:
+      en:
+        - Lists, forms, and detail pages repeat across the application.
+        - You want declarative page definitions instead of writing every template by hand.
+      zh:
+        - 列表、表单与详情页在应用里反复出现。
+        - 希望使用声明式页面定义，而不是手写每一个模板。
+    avoid_when:
+      en:
+        - You prefer plain PHP templates, even for a larger site; use minimal-site.
+        - You only need JSON; use rest-api.
+      zh:
+        - 即使页面较多，你仍偏好纯 PHP 模板；改用 minimal-site。
+        - 只需要 JSON；改用 rest-api。
+    remove_if:
+      en:
+        - security when there is no login or CSRF surface.
+        - validator when every form is trivial.
+      zh:
+        - 没有登录或 CSRF 面时去掉 security。
+        - 所有表单都很简单时去掉 validator。
+    notes:
+      en:
+        - yaml-pages and xml-pages pull in pages; pages pulls in template.
+        - "Pick the page front-end by preference: pages (array DSL), yaml-pages, or xml-pages."
+        - Add i18n only when there is a second language.
+      zh:
+        - yaml-pages 与 xml-pages 会带入 pages；pages 会带入 template。
+        - 页面前端按喜好选择：pages（数组 DSL）、yaml-pages 或 xml-pages。
+        - 只有存在第二语言时才添加 i18n。
+
+  - id: rest-api
+    name:
+      en: REST API
+      zh: REST API
+    tagline:
+      en: JSON in, JSON out. No HTML.
+      zh: 只输出 JSON，不渲染 HTML。
+    starter: null
+    modules: [web, log, http-exceptions, validator, dao, debug]
+    pulled_in: [sql, domain, cache, utils]
+    optional_modules: [manager, wiring, jobs, mail, rpc, ai-proxy, data-structure, mitable]
+    packages: [migears/web, migears/log, migears/http-exceptions, migears/validator, migears/dao, migears/debug]
+    composer: composer require migears/web migears/log migears/http-exceptions migears/validator migears/dao migears/debug
+    use_when:
+      en:
+        - The backend serves JSON only.
+        - One table maps to one domain object for most endpoints.
+      zh:
+        - 后端只提供 JSON。
+        - 大多数端点是一张表对应一个领域对象。
+    avoid_when:
+      en:
+        - You need server-rendered pages; use minimal-site or content-site.
+        - You need an ORM with identity mapping and lazy relations.
+      zh:
+        - 需要服务端渲染页面；改用 minimal-site 或 content-site。
+        - 需要带身份映射与懒加载关系的 ORM。
+    remove_if:
+      en:
+        - cache when nothing is actually cached; dao still pulls it in, but you can ignore it.
+        - debug in production.
+      zh:
+        - 没有实际缓存时可以不关心 cache；dao 仍会带入它。
+        - 生产环境去掉 debug。
+    notes:
+      en:
+        - dao pulls in sql, domain, cache, and utils.
+        - Add manager only for multi-step use cases or events.
+        - Use sql directly for joins and reports.
+      zh:
+        - dao 会带入 sql、domain、cache 与 utils。
+        - 只有多步骤用例或事件时才添加 manager。
+        - 连接与报表直接使用 sql。
+
+  - id: mobile-api
+    name:
+      en: Mobile API
+      zh: 移动端 / 开放 API
+    tagline:
+      en: REST API plus native-client login with refresh rotation.
+      zh: REST API 加原生客户端登录与刷新轮换。
+    starter: null
+    modules: [web, log, http-exceptions, validator, dao, security-token-auth, debug]
+    pulled_in: [sql, domain, cache, utils, security]
+    optional_modules: [acl-feature, web-guards, rpc, jobs, mail, ai-proxy]
+    packages: [migears/web, migears/log, migears/http-exceptions, migears/validator, migears/dao, migears/security-token-auth, migears/debug]
+    composer: composer require migears/web migears/log migears/http-exceptions migears/validator migears/dao migears/security-token-auth migears/debug
+    use_when:
+      en:
+        - Native mobile or desktop clients need long-lived login.
+        - You want bearer tokens with rotating refresh tokens.
+      zh:
+        - 原生移动端或桌面客户端需要长期登录。
+        - 需要 Bearer token 与刷新令牌轮换。
+    avoid_when:
+      en:
+        - Browser session login; use content-site with migears/security.
+        - Simple static API keys with no refresh lifecycle.
+      zh:
+        - 浏览器会话登录；改用 content-site 搭配 migears/security。
+        - 只需静态 API key，没有刷新生命周期。
+    remove_if:
+      en:
+        - security-token-auth for public read-only endpoints.
+        - debug in production.
+      zh:
+        - 公开只读端点可以去掉 security-token-auth。
+        - 生产环境去掉 debug。
+    notes:
+      en:
+        - acl-feature and web-guards are optional access layers; add them only when a static endpoint matrix or cross-cutting guards are needed.
+        - rpc only when clients actually speak JSON-RPC.
+      zh:
+        - acl-feature 与 web-guards 是可选访问层；只有需要静态端点矩阵或统一守卫时才添加。
+        - 只有客户端确实使用 JSON-RPC 时才添加 rpc。

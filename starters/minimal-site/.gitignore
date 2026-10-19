@@ -1,0 +1,4 @@
+/vendor/
+/.modules/
+/var/log/*.log
+/composer.lock
